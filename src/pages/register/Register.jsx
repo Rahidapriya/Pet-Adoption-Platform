@@ -17,6 +17,7 @@ import { useEffect } from 'react';
 import registerhero from '../../assets/Sign up.png'
 import Navbar from "../../shared/navbar/Navbar";
 import { AuthContext } from "../../components/providers/AuthProvider";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 // import backgroundImage from '../../assets/loginback.jpg'
    
@@ -26,6 +27,7 @@ import { AuthContext } from "../../components/providers/AuthProvider";
 
 const Register = () => {
     
+  const axiosPublic =useAxiosPublic();
   useEffect(()=>{
     AOS.init({duration:'1000'})
   })
@@ -79,18 +81,30 @@ theme: "colored",
   }
     createUser(email, password)
       .then((result) => {
-        console.log(result.user);
+        console.log('this new user',result.user);
        
         profileInfo(name, photo)
           .then(() => {
-            
-            
+          const userInfo={
+            name:name,
+            email:email,
+            photoURL:photo,
+            role:'User',
+          } 
+          axiosPublic.post('/users',userInfo)
+          .then(res=>{
+            if(res.data.insertedId){
+              console.log('user added database');
               swal("Hurray!", "You Have Registered Successfully", "success");
             
            
-            e.target.reset();
-        navigate(location?.state?location.state:'/'); 
-          })
+              e.target.reset();
+          navigate(location?.state?location.state:'/'); 
+           
+            }
+          }) 
+        }) 
+              
           .catch((error) => {
             console.log("Error updating user profile:", error);
           });

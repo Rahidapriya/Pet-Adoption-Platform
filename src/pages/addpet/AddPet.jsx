@@ -30,6 +30,7 @@ const AddPet = () => {
           'Content-Type':'multipart/form-data'
         }
       });
+      console.log(response.data);
       
       if (response.data.status === 200) {
         setUrl(response.data.data.url);

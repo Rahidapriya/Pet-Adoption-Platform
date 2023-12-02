@@ -30,6 +30,10 @@ import MyAddedPetsDashboard from "../../pages/userDashboard/MyAddedPetsDashboard
 import CreateDonationCampaignDashboard from "../../pages/userDashboard/CreateDonationCampaignDashboard";
 import DonationCampaign from "../../pages/donationCampaign/DonationCampaign";
 import DonationCampaignDetails from "../../pages/donationCampaign/donationCampaignDetails/DonationCampaignDetails";
+import MyDonationCamp from "../../pages/donationCampaign/myDonationCamp/MyDonationCamp";
+import AllUsers from "../../pages/userDashboard/admin/alluser/AllUsers";
+import AllUsersDeshboard from "../../pages/userDashboard/admin/alluser/AllUsersDeshboard";
+import AllPetsAdmin from "../../pages/userDashboard/admin/allpets/AllPetsAdmin";
 
 
 
@@ -49,6 +53,10 @@ const router = createBrowserRouter([
         element: <PetListing></PetListing>
       },
       {
+        path: '/adoptionreq',
+        element: <AdoptionReqDashboard></AdoptionReqDashboard>
+      },
+      {
         path: '/donationcampaign',
         element: <DonationCampaign></DonationCampaign>
       },
@@ -56,6 +64,14 @@ const router = createBrowserRouter([
         path: '/donationcampaigndetails/:id',
         element: <DonationCampaignDetails></DonationCampaignDetails>,
         loader: ({ params }) => fetch(`http://localhost:5007/adddonationcamp/${params.id}`)
+      },
+      {
+        path: "/login",
+        element: <Login></Login>
+      },
+      {
+        path: "/register",
+        element: <Register></Register>
       },
       {
         path: '/userdashboard',
@@ -78,62 +94,30 @@ const router = createBrowserRouter([
         path: '/createdonationcamp',
         element:<CreateDonationCampaignDashboard></CreateDonationCampaignDashboard>
       },
-      {
-        path: '/adoptionreq',
-        element: <AdoptionReqDashboard></AdoptionReqDashboard>
-      },
+      
       {
         path: '/updatepet/:petId',
         element: <UpdatePet></UpdatePet>,
         loader: ({ params }) => fetch(`http://localhost:5007/pets/${params.petId}`)
         
       },
-
-      // {
-      //   path: '/readbook/:id',
-      //   element: <PrivateRoute><Read></Read></PrivateRoute>,
-      //   loader: ({ params }) => fetch(`http://localhost:5006/books/${params.id}`)
-      // },
-      // {
-      //   path: '/allbooks',
-      //   element: <AllBooks></AllBooks>,
-      //   // loader: () => fetch('http://localhost:5006/books')
-      // },
-      // {
-      //   path: '/updatebooks/:id',
-      //   element: <PrivateRoute><UpdateBooks></UpdateBooks></PrivateRoute>,
-      //   loader: ({ params }) => fetch(`http://localhost:5006/books/${params.id}`)
-
-
-      // },
-      // {
-      //   path: '/catagorized_books/:cat',
-      //   element: <AllBooksByCategory></AllBooksByCategory>,
-      //   loader: ({ params }) => fetch(`http://localhost:5006/booksbycategory/${params.cat}`)
-      // },
-      // {
-      //   path: '/detailsbook/:id',
-      //   element: <PrivateRoute><DetailsBook></DetailsBook></PrivateRoute>,
-      //   loader: ({ params }) => fetch(`http://localhost:5006/books/${params.id}`)
-      // },
-      // {
-      //   path: '/borrowedbooks',
-      //   element: <PrivateRoute><BorrowedBooks></BorrowedBooks></PrivateRoute>,
-      //   // loader: () => fetch(`http://localhost:5006/addtoborrow`)
-      // },
-      // {
-      //    path:'/borrowedbooks',
-      //    element:<BorrowedBooks></BorrowedBooks>
-      // },
-
       {
-        path: "/login",
-        element: <Login></Login>
+        path:'/mydonationcamp',
+        element:<MyDonationCamp></MyDonationCamp>
       },
       {
-        path: "/register",
-        element: <Register></Register>
-      }
+           path:'/allusers',
+           element:<AllUsersDeshboard></AllUsersDeshboard>
+      },
+      {
+        path:'/allpetsadmin',
+        element:<AllPetsAdmin></AllPetsAdmin>
+   },
+
+     
+
+
+     
 
     ]
   },

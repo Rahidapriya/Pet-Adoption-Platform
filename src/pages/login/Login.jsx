@@ -19,6 +19,7 @@ import { useEffect } from 'react';
 
 import Navbar from '../../shared/navbar/Navbar';
 import { AuthContext } from '../../components/providers/AuthProvider';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
  
 const Login = () => {
@@ -32,12 +33,26 @@ const Login = () => {
   // const [loginError,setLoginError]=useState('')
   const location=useLocation();
    const navigate=useNavigate()
+const axiosPublic=useAxiosPublic();
 
 
    const handleGoogle = () => {
     googleSignIn()
       .then((result) => {
         console.log(result.user);
+        const userInfo={
+          email:result.user?.email,
+          name:result.user?.displayName,
+          photoURL:result.user?.photoURL,
+          role:'User'
+        }
+        axiosPublic.post('/users',userInfo)
+        .then(res=>{
+          console.log(res.data);
+        
+          navigate('/')
+        })
+        
         // e.target.reset();
         swal("Hurray!", "You Have Logged in Successfully", "success");
       

@@ -5,6 +5,7 @@ import { createContext, useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
 import app from '../../firebase/firebase.config'
 import axios from "axios";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 const auth = getAuth(app);
 const googleProvider=new GoogleAuthProvider()
 export const AuthContext = createContext(null);
@@ -12,7 +13,8 @@ const AuthProvider = ({ children }) => {
     
 
     const [user, setUser] = useState(null);
-    const [loading,setLoding]=useState(true)
+    const [loading,setLoding]=useState(true);
+   
 
     const createUser = (email, password) => {
         setLoding(true)

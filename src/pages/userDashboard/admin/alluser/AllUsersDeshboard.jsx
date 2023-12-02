@@ -1,12 +1,16 @@
 
 import { NavLink } from 'react-router-dom';
-import AddPet from '../addpet/AddPet';
+import AllUsers from './AllUsers';
 
-const UserDashboard = () => {
+
+const AllUsersDeshboard = () => {
   const navLinks = <>
 <li><NavLink to="/allusers" className={({ isActive, isPending }) =>
                     isPending ? "pending" : isActive ? "text-[#FF0000] font-bold underline underline-offset-8 hover:text-red  " : ""
                   }>All Users</NavLink></li>
+                  <li><NavLink to="/allpetsadmin" className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "text-[#FF0000] font-bold underline underline-offset-8 hover:text-red  " : ""
+                  }>All Pets</NavLink></li>
                   <div className=' divider'></div>
     <li><NavLink to="/addpet" className={({ isActive, isPending }) =>
       isPending ? "pending" : isActive ? "text-[#FF0000] font-bold underline underline-offset-8 hover:text-red  " : ""
@@ -56,11 +60,11 @@ const UserDashboard = () => {
           <p className='border-y-2 w-4/12 mx-auto text-3xl mt-4 font-bold text-center'>User Dashboard</p>
         </div>
         {/* con */}
-
+<AllUsers></AllUsers>
 
       </div>
     </div>
   );
 };
 
-export default UserDashboard;
+export default AllUsersDeshboard;

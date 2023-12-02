@@ -4,7 +4,10 @@ import { NavLink } from 'react-router-dom';
 
 const CreateDonationCampaignDashboard = () => {
     const navLinks=<>
-   
+   <li><NavLink to="/allusers" className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "text-[#FF0000] font-bold underline underline-offset-8 hover:text-red  " : ""
+                  }>All Users</NavLink></li>
+                  <div className=' divider'></div>
     <li><NavLink to="/addpet" className={({ isActive, isPending }) =>
                     isPending ? "pending" : isActive ? "text-[#FF0000] font-bold underline underline-offset-8 hover:text-red  " : ""
                   }>Add a Pet</NavLink></li>
