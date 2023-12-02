@@ -1,0 +1,73 @@
+[
+    {
+      "image": "https://i.ibb.co/v3GrCF0/rabbit.jpg",
+      "name": "Buddy",
+      "age": 3,
+      "location": "New York",
+      "category": "Dog"
+    },
+    {
+      "image": "https://i.ibb.co/v3GrCF0/rabbit.jpg",
+      "name": "Whiskers",
+      "age": 2,
+      "location": "Los Angeles",
+      "category": "Cat"
+    },
+    {
+      "image": "  https://i.ibb.co/v3GrCF0/rabbit.jpg",
+      "name": "Charlie",
+      "age": 1,
+      "location": "Chicago",
+      "category": "Rabbit"
+    },
+    {
+      "image": " https://i.ibb.co/m5WB59w/listdog1.jpg",
+      "name": "Rocky",
+      "age": 4,
+      "location": "Houston",
+      "category": "Dog"
+    },
+    {
+      "image": " https://i.ibb.co/Prv7zjB/listcat2.jpg",
+      "name": "Mittens",
+      "age": 2,
+      "location": "Phoenix",
+      "category": "Cat"
+    },
+    {
+      "image": "https://i.ibb.co/VMJx34v/bird.jpg",
+      "name": "Coco",
+      "age": 3,
+      "location": "Philadelphia",
+      "category": "Bird"
+    },
+    {
+      "image": "  https://i.ibb.co/BwVk3tC/listdog2.jpg",
+      "name": "Luna",
+      "age": 1,
+      "location": "San Antonio",
+      "category": "Dog"
+    },
+    {
+      "image":  "https://i.ibb.co/y800wj4/listcat1.jpg",
+      "name": "Oreo",
+      "age": 2,
+      "location": "San Diego",
+      "category": "Cat"
+    },
+    {
+      "image": "https://i.ibb.co/v3GrCF0/rabbit.jpg",
+      "name": "Bubbles",
+      "age": 1,
+      "location": "Dallas",
+      "category": "Fish"
+    },
+    {
+      "image": " https://i.ibb.co/gPzX3Yp/listlion1.jpg",
+      "name": "Simba",
+      "age": 3,
+      "location": "Austin",
+      "category": "Lion"
+    }
+  ]
+  

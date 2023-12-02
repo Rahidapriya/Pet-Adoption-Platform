@@ -1,0 +1,28 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  text-align: center; /* Center the content */
+}
+
+.pagination__link {
+  display: inline-block;
+  cursor: pointer;
+  margin: 0 5px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.pagination__link--disabled {
+  cursor: not-allowed;
+  color: #aaa;
+  
+}
+
+.pagination__link--active {
+  background-color: #007bff;
+  padding: 5px 20px;
+  color: #fff;
+  border: 1px solid #007bff;
+}
