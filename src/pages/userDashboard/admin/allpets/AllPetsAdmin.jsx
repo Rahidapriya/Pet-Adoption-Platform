@@ -4,6 +4,7 @@ import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import { useEffect } from 'react';
 import { MdArrowDropDown } from 'react-icons/md';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const AllPetsAdmin = () => {
     const [pets, setPets] = useState([]);
@@ -90,7 +91,29 @@ const AllPetsAdmin = () => {
           console.error('Error updating adoption status:', error);
         });
     };
-   
+    const deletePet = (_id) => {
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, Delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            fetch(`http://localhost:5007/pets/${_id}`, {
+              method: 'DELETE',
+            })
+              .then(response => response.json())
+              .then(data => {
+                console.log('Pet deleted successfully:', data);
+                setPets(prevPets => prevPets.filter(pet => pet._id !== _id));
+              })
+              .catch(error => console.error('Error deleting pet:', error));
+          }
+        });
+      };
     return (
         <div>
         <div>
@@ -148,8 +171,8 @@ const AllPetsAdmin = () => {
       </button>
     </th>
     <th>
-        <button  className='btn  btn-xs btn-warning text-white mx-4'>Update</button>
-        <button  className='btn btn-xs  btn-accent text-white'>Delete</button>
+    <Link to={`../updatepet/${pet._id}`}> <button  className='btn  btn-xs btn-warning text-white mx-4'>Update</button></Link>
+        <button  onClick={() => deletePet(pet._id)} className='btn btn-xs  btn-accent text-white'>Delete</button>
     </th>
   </tr>
 

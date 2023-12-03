@@ -158,7 +158,7 @@ console.log('img',url);
   
     return (
         <div>
-      <div className="flex items-center justify-center p-12 w-full lg:w-10/12 mx-auto bg-blue-200 mt-16 rounded-xl">
+      <div className="flex items-center justify-center p-12 w-full lg:w-10/12 mx-auto bg-base-400 mt-16 rounded-xl">
         <div className="mx-auto w-full max-w-[550px] shadow-lg p-6 rounded-md">
           <form onSubmit={handleSubmit}>
             <div className='flex '>

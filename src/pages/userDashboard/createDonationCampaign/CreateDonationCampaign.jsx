@@ -24,18 +24,23 @@ const CreateDonationCampaign = () => {
       }
   
       const formData = new FormData();
-      formData.append("image", image);
-      
+      formData.append("file", image);
+      formData.append("upload_preset", "petadding"); // Replace with your Cloudinary upload preset
+      formData.append("cloud_name", "dtwz2gkbz"); // Replace with your Cloudinary cloud name
   
-      const response = await axios.post("https://api.imgbb.com/1/upload?key=055a245dd93198ad79e84b535cd64548", formData,{
-        headers:{
-          'Content-Type':'multipart/form-data'
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/dtwz2gkbz/image/upload", // Replace with your Cloudinary endpoint
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
-      });
-      
-      if (response.data.status === 200) {
-        setUrl(response.data.data.url);
-        console.log(response.data.data.url);
+      );
+  
+      if (response.data && response.data.secure_url) {
+        setUrl(response.data.secure_url);
+        console.log(response.data.secure_url);
       } else {
         toast.error("Image upload failed. Please try again.");
       }
@@ -68,6 +73,7 @@ const CreateDonationCampaign = () => {
   // }
 console.log('img',url);
   const initialValues = {
+    nmae:"",
     max_donation_limit: "",
    date:"",
     shortdesp: "",
@@ -98,6 +104,7 @@ console.log('img',url);
   
         const newdonationcamp = {
           image: url || 'photo',
+          name:values.name,
           max_donation_limit: values.max_donation_limit,
           
          last_donation_date:values.date,
@@ -107,6 +114,7 @@ console.log('img',url);
           addedDate: `${formattedDate} ${formattedTime}`,
          
           userEmail: user.email,
+          Pause:false
         };
   
         const response = await fetch("http://localhost:5007/adddonationcamp", {
@@ -143,7 +151,7 @@ console.log('img',url);
   
     return (
         <div>
-      <div className="flex items-center justify-center p-12 w-full lg:w-10/12 mx-auto bg-blue-200 mt-16 rounded-xl">
+      <div className="flex items-center justify-center p-12 w-full lg:w-10/12 mx-auto bg-base-700 mt-16 rounded-xl">
         <div className="mx-auto w-full max-w-[550px] shadow-lg p-6 rounded-md">
           <form onSubmit={handleSubmit}>
             <div className='flex '>
@@ -200,6 +208,24 @@ console.log('img',url);
                   className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                 />
               </div> */}
+              <div htmlFor='max_donation_limit' className="mb-5">
+                <label className="mb-3 block text-base font-medium text-[#07074D]">
+                 Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Name"
+                  value={values.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  min="0"
+                 
+                  className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                />
+                 {errors.name&& touched.name? (<p className=" text-error">{errors.name}</p>):null}
+              </div>
               <div htmlFor='max_donation_limit' className="mb-5">
                 <label className="mb-3 block text-base font-medium text-[#07074D]">
                   Maximum Donation Amount

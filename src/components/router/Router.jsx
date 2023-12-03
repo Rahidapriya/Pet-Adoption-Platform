@@ -34,6 +34,13 @@ import MyDonationCamp from "../../pages/donationCampaign/myDonationCamp/MyDonati
 import AllUsers from "../../pages/userDashboard/admin/alluser/AllUsers";
 import AllUsersDeshboard from "../../pages/userDashboard/admin/alluser/AllUsersDeshboard";
 import AllPetsAdmin from "../../pages/userDashboard/admin/allpets/AllPetsAdmin";
+import AllDonationCampAdmin from "../../pages/userDashboard/admin/allDonationCamp/AllDonationCampAdmin";
+import AllPetsAdminDashboard from "../../pages/userDashboard/admin/allpets/AllPetsAdminDashboard";
+import AllDonationCampAdminDashboard from "../../pages/userDashboard/admin/allDonationCamp/AllDonationCampAdminDashboard";
+import UpdateDonationCamp from "../../pages/userDashboard/updateDonationCampaign/UpdateDonationCamp";
+import MyDonationCampDashboard from "../../pages/donationCampaign/myDonationCamp/MyDonationCampDashboard";
+import MyDonation from "../../pages/userDashboard/myDonation/MyDonation";
+import MyDonationDashboard from "../../pages/userDashboard/myDonation/MyDonationDashboard";
 
 
 
@@ -94,6 +101,16 @@ const router = createBrowserRouter([
         path: '/createdonationcamp',
         element:<CreateDonationCampaignDashboard></CreateDonationCampaignDashboard>
       },
+      {
+        path: '/mydonation',
+        element:<MyDonationDashboard></MyDonationDashboard>
+      },
+      {
+        path: '/updatedonationcamp/:donationCampaignId',
+        element:<UpdateDonationCamp></UpdateDonationCamp>,
+        loader: ({ params }) => fetch(`http://localhost:5007/adddonationcamp/${params.donationCampaignId}`)
+      },
+      
       
       {
         path: '/updatepet/:petId',
@@ -103,7 +120,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/mydonationcamp',
-        element:<MyDonationCamp></MyDonationCamp>
+        element:<MyDonationCampDashboard></MyDonationCampDashboard>
       },
       {
            path:'/allusers',
@@ -111,9 +128,13 @@ const router = createBrowserRouter([
       },
       {
         path:'/allpetsadmin',
-        element:<AllPetsAdmin></AllPetsAdmin>
+        element:<AllPetsAdminDashboard></AllPetsAdminDashboard>
    },
 
+ {
+        path:'/alldonationcampadmin',
+        element:<AllDonationCampAdminDashboard></AllDonationCampAdminDashboard>
+   },
      
 
 

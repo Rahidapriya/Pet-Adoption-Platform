@@ -1,10 +1,11 @@
 
 import { NavLink } from 'react-router-dom';
-import AddPet from '../addpet/AddPet';
-import { useEffect, useState } from 'react';
-import logo from "../../assets/logo.png";
 
-const AddPetDashboard = () => {
+import { useEffect, useState } from 'react';
+import logo from "../../../assets/logo.png";
+import MyDonation from './MyDonation';
+
+const MyDonationDashboard = () => {
   const [users, setUsers] = useState([]);
   // const axiosSecure =useAxiosSecure();
   useEffect(() => {
@@ -117,11 +118,11 @@ const AddPetDashboard = () => {
           <p className='border-y-2 w-4/12 mx-auto text-3xl  font-bold text-center '>User Dashboard</p>
         </div>
         {/* con */}
-<AddPet></AddPet>
+<MyDonation></MyDonation>
 
       </div>
     </div>
   );
 };
 
-export default AddPetDashboard;
+export default MyDonationDashboard;

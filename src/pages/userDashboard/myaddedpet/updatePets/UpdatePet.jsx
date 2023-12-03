@@ -7,17 +7,20 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { AuthContext } from "../../../../components/providers/AuthProvider";
+// import { useRef } from "react";
 
 const UpdatePet = () => {
   const { user } = useContext(AuthContext);
   const pet=useLoaderData()
   const [updateImage, setUpdateImage] = useState('');
+  console.log('update image dekhbo',updateImage);
   const [url, setUrl] = useState('');
 
   const navigate = useNavigate();
   const { petId } = useParams();
   const {_id,name,shortdesp,longdesp,age,location,image,category}=pet;
   const [updateCategory, setUpdateCategory] = useState(category);
+  const [photourl,setPhotourl]=useState('link')
   const categoryOptions = [
     { value: "Dog", label: "Dog" },
     { value: "Cat", label: "Cat" },
@@ -27,15 +30,15 @@ const UpdatePet = () => {
   ];
 
   const [initialValues, setInitialValues] = useState({
-    name: "",
-    age: "",
+    name: name,
+    age: age,
     category: "",
-    location: "",
-    shortdesp: "",
-    longdesp: "",
-    photo: "",
+    location: location,
+    shortdesp: shortdesp,
+    longdesp: longdesp,
+    photo: image,
   });
-
+console.log('name updated',name);
   useEffect(() => {
     if (!petId) {
       // Handle the case where petId is undefined
@@ -49,13 +52,13 @@ const UpdatePet = () => {
         const data = await response.json();
   
         setInitialValues({
-          name: data.name || "",
-          age: data.age || "",
-          category: { value: data.category, label: data.category } || "",
-          location: data.location || "",
-          shortdesp: data.shortdesp || "",
-          longdesp: data.longdesp || "",
-          photo: data.image || "",
+          name: data.name,
+          age: data.age,
+          category: { value: data.category, label: data.category },
+          location: data.location,
+          shortdesp: data.shortdesp,
+          longdesp: data.longdesp,
+          photo: data.image,  // Make sure this is correct
         });
   
         setUrl(data.image);
@@ -83,10 +86,10 @@ const UpdatePet = () => {
           'Content-Type': 'multipart/form-data'
         }
       });
-
+console.log('x',response.data);
       if (response.data.status === 200) {
-        setUrl(response.data.data.url);
-        console.log(response.data.data.url);
+        setUrl(response.data.data.display_url);
+        console.log('matha kharap',response.data.data.url);
       } else {
         toast.error("Image upload failed. Please try again.");
       }
@@ -94,6 +97,7 @@ const UpdatePet = () => {
       console.error("Error uploading image:", error);
     }
   };
+  
 
   const handleCategorySelectChange = (selectedOption) => {
     setUpdateCategory(selectedOption);
@@ -119,7 +123,13 @@ const UpdatePet = () => {
           longdesp: values.longdesp,
           userEmail: user.email,
         };
+        console.log('upadated pet....',updatedPet);
+        // const fileInputRef = useRef(null); // Create a ref
 
+        // const handleUpdateImage = (file) => {
+        //   setFieldValue("photo", file);
+        //   fileInputRef.current.value = '';
+        // };
         const response = await fetch(`http://localhost:5007/pets/${petId}`, {
           method: "PUT",
           headers: {
@@ -138,21 +148,21 @@ const UpdatePet = () => {
             icon: 'success',
             confirmButtonText: 'Cool',
           });
-          navigate('/');
+          // navigate('/');
         }
       } catch (error) {
         console.error("Error updating pet:", error);
       }
     },
   });
-          
+      console.log('image dekhbo',image);    
         
 
   return (
     <div>
       <div className="flex items-center justify-center p-12 w-full lg:w-10/12 mx-auto bg-blue-200 mt-16 rounded-xl">
         <div className="mx-auto w-full max-w-[550px] shadow-lg p-6 rounded-md">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} >
             <div className='flex '>
               <div className="w-full">
                 <label className="mb-3 block text-base font-medium text-[#07074D]">
@@ -169,23 +179,27 @@ const UpdatePet = () => {
                         src={updateImage ? URL.createObjectURL(updateImage) : ""}
                         alt="img"
                       />
+ 
                       : <img
                         src="https://cdn-icons-png.flaticon.com/128/1665/1665680.png"
                         className="w-10"
                       />}
                   </label>
+                 <div>
+                  <input type="text" defaultValue={image} />
                   <input
                     id="file-upload"
                     className='text-white'
                     type="file"
                     name="photo"
-                    defaultValue={image}
-                    value={values.photo}
+                    defaultValue={''}
+                    // value={values.photo}
                     onBlur={handleBlur}
                     
                     onChange={(e) => setUpdateImage(e.target.files[0])}
                   />
-                 
+                 </div>
+                  {/* value={updateImage || values.photo} */}
                 </div>
                 {errors.photo && touched.photo? (<p className=" text-error">{errors.photo}</p>):null}
               </div>
@@ -216,12 +230,12 @@ const UpdatePet = () => {
                   name="name"
                   id="name"
                   placeholder="Name"
-                  defaultValue={name}
+                  // defaultValue={name}
                   value={values.name}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   min="0"
-                  autoComplete="off"
+                  // autoComplete="off"
                   className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                 />
                  {errors.name && touched.name? (<p className=" text-error">{errors.name}</p>):null}
@@ -235,7 +249,7 @@ const UpdatePet = () => {
                   name="location"
                   id="location"
                   placeholder="pet location"
-                  defaultValue={location}
+                  // defaultValue={location}
                   value={values.location}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -272,9 +286,9 @@ const UpdatePet = () => {
                       type="number"
                       name="age"
                       id="age"
-                      autoComplete="off"
+                     
                       placeholder="Pet Age"
-                      defaultValue={age}
+                      // defaultValue={age}
                       value={values.age}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -294,12 +308,12 @@ const UpdatePet = () => {
                   name="shortdesp"
                   id="shortdesp"
                   placeholder="Short Description"
-                  defaultValue={shortdesp}
+                  // defaultValue={shortdesp}
                   value={values.shortdesp}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   min="0"
-                  autoComplete="off"
+                  // autoComplete="off"
                   className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                 />
                  {errors.shortdesp && touched.shortdesp? (<p className=" text-error">{errors.shortdesp}</p>):null}
@@ -313,12 +327,12 @@ const UpdatePet = () => {
           name="longdesp"
           id="longdesp"
           placeholder="Long Description"
-          defaultValue={longdesp}
+          // defaultValue={longdesp}
           value={values.longdesp}
           onChange={handleChange}
           onBlur={handleBlur}
           min="0"
-          autoComplete="off"
+          // autoComplete="off"
           rows="4" // Specify the number of rows for the text area
           className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md resize-none" // Added resize-none to disable resizing
         />
@@ -329,7 +343,7 @@ const UpdatePet = () => {
                 type="submit"
                 className="hover:shadow-form rounded-md hover:bg-blue-400 py-3 px-8 text-center text-base font-semibold text-white outline-none w-full bg-[#ff0000]"
               >
-                Add Pet
+                Updat Pet
               </button>
               </div>
             </form>

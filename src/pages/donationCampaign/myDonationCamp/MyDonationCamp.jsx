@@ -1,12 +1,18 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../../components/providers/AuthProvider';
+import { Link, useLoaderData } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const MyDonationCamp = () => {
   const { user } = useContext(AuthContext);
   const [donationCamp, setDonationCamp] = useState([]);
   const [filteredDonationCamp, setFilteredDonationCamp] = useState([]);
   const [selectedDonation, setSelectedDonation] = useState(null);
-
+  // const donation=useLoaderData();
+  // const{_id,name,max_donation_limit,}=donation;
+  const axiosSecure = useAxiosSecure();
+  // const [allCamps,setAllCamps]=useState([])
   useEffect(() => {
     fetch('http://localhost:5007/adddonationcamp')
       .then(response => response.json())
@@ -24,15 +30,62 @@ const MyDonationCamp = () => {
     return (donated / max) * 100;
   };
 
-  const pauseDonation = (donationId) => {
-    // Implement the logic to pause the donation with the given donationId
-    // You may need to send a request to the server to update the donation status
+  const updatePetStatusLocally = (petId, newStatus) => {
+    setFilteredDonationCamp((prevPets) =>
+      prevPets.map((pet) =>
+        pet._id === petId ? { ...pet, pause: newStatus } : pet
+      )
+    );
+  };
+  const handleTogglePauseResume = (donation) => {
+    const petId = donation._id;
+
+    // Check if the donation is currently paused
+    const isPaused = donation.pause;
+
+    // Optimistically update the local state based on the action
+    updatePetStatusLocally(petId, !isPaused);
+
+    // Send the appropriate request based on the current status
+    const request = isPaused
+      ? axiosSecure.patch(`/admin/resume/${petId}`)
+      : axiosSecure.patch(`/admin/pause/${petId}`);
+
+    // Perform the request
+    request
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.modifiedCount === 0) {
+          // Revert the local state if the request fails
+          updatePetStatusLocally(petId, isPaused);
+          console.error('Failed to update pause/resume status.');
+        } else {
+          const actionMessage = isPaused ? 'Resumed' : 'Paused';
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: `Donation ${actionMessage} successfully`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      })
+      .catch((error) => {
+        // Revert the local state if the request fails
+        updatePetStatusLocally(petId, isPaused);
+        console.error('Error updating pause/resume status:', error);
+      });
   };
 
-  const editDonation = (donationId) => {
-    // Implement the logic to redirect the user to the edit donation page with the given donationId
-    // You can use react-router-dom or any routing mechanism for this purpose
-  };
+  // const pauseDonation = (donationId) => {
+  //   // Implement the logic to pause the donation with the given donationId
+  //   // You may need to send a request to the server to update the donation status
+  // };
+
+  // const editDonation = (donationId) => {
+  //   // Implement the logic to redirect the user to the edit donation page with the given donationId
+  //   // You can use react-router-dom or any routing mechanism for this purpose
+  // };
 
   const viewDonators = (donationId) => {
     // Implement the logic to show a modal with the list of donors for the given donationId
@@ -56,25 +109,30 @@ const MyDonationCamp = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredDonationCamp.map(donation => (
-            <tr key={donation.id}>
-              <td className="py-2 px-4 border-b">{donation.petName}</td>
-              <td className="py-2 px-4 border-b text-center">{donation.max_donation_limit}</td>
+        {filteredDonationCamp.map(donation => (
+  <tr key={donation._id}> {/* Assuming _id is a unique identifier */}
+    <td className="py-2 px-4 border-b">{donation.name}</td>
+    <td className="py-2 px-4 border-b text-center">{donation.max_donation_limit}</td>
+    <td className="py-2 px-4 border-b">
+      <div className="bg-blue-200 h-6 w-full rounded-full">
+        <div
+          className="bg-blue-500 h-full rounded-full"
+          style={{ width: `${calculateProgress(donation.donatedAmount, donation.max_donation_limit)}%` }}
+        ></div>
+      </div>
+    </td>
               <td className="py-2 px-4 border-b">
-                <div className="bg-blue-200 h-6 w-full rounded-full">
-                  <div
-                    className="bg-blue-500 h-full rounded-full"
-                    style={{ width: `${calculateProgress(donation.donatedAmount, donation.max_donation_limit)}%` }}
-                  ></div>
-                </div>
-              </td>
-              <td className="py-2 px-4 border-b">
-                <button className="bg-blue-500 text-white px-2 py-1 rounded mr-2" onClick={() => pauseDonation(donation.id)}>
-                  Pause
+              <button
+                  className={`${
+                    donation.pause ? 'bg-green-500' : 'bg-blue-500'
+                  } text-white px-2 py-1 rounded mr-2`}
+                  onClick={() => handleTogglePauseResume(donation)}
+                >
+                  {donation.pause ? 'Resume' : 'Pause'}
                 </button>
-                <button className="bg-green-500 text-white px-2 py-1 rounded mr-2" onClick={() => editDonation(donation.id)}>
+               <Link to={`../updatedonationcamp/${donation._id}`}> <button className="bg-green-500 text-white px-2 py-1 rounded mr-2" onClick={() => editDonation(donation.id)}>
                   Edit
-                </button>
+                </button></Link>
                 <button className="bg-indigo-500 text-white px-2 py-1 rounded" onClick={() => viewDonators(donation.id)}>
                   View Donators
                 </button>
