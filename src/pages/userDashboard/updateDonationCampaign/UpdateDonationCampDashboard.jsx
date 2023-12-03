@@ -3,28 +3,40 @@ import { NavLink } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
 import logo from "../../../assets/logo.png";
-import MyDonationCamp from './MyDonationCamp';
+import UpdateDonationCamp from './UpdateDonationCamp';
 
-const MyDonationCampDashboard= () => {
+const UpdateDonationCampDashboard = () => {
   const [users, setUsers] = useState([]);
-  // const axiosSecure =useAxiosSecure();
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     fetch(`https://serversite-pet-adoption.vercel.app/users`)
       .then(response => response.json())
       .then(data => {
         console.log('Fetched users:', data);
         setUsers(data);
+        setLoading(false); // Set loading to false when data is loaded
       })
-      .catch(error => console.error('Error fetching my added users:', error));
+      .catch(error => {
+        console.error('Error fetching my added users:', error);
+        setLoading(false); // Set loading to false even in case of an error
+      });
   }, []);
-  const isAdmin = users.some(user => user.role === 'Admin');
+
+  if (loading) {
+    // Show a loading spinner or message while waiting for data
+    return <div>Loading...</div>;
+  }
+  console.log(users);
+   console.log('dedd',users.role,users.email);
+   const isAdmin = users.some(user => user.role === 'Admin');
   const navLinks =
   <>
   <div className="flex flex-col items-center mb-5">
                <div className=" bg-white rounded-full p-5 w-24"> <img src={logo}  alt="" /></div>
               <div className="  text-2xl font-bold ">FourPows</div>
                </div>
-    {isAdmin && (
+               {isAdmin && 
       <>
         <li>
           <NavLink
@@ -70,7 +82,7 @@ const MyDonationCampDashboard= () => {
         </li>
         <div className=' divider text-white'></div>
       </>
-    )}
+}
       <li><NavLink to="/addpet" className={({ isActive, isPending }) =>
         isPending ? "pending  text-white" : isActive ? "text-warning  font-bold underline underline-offset-8 hover:text-red  " : ""
       }>Add a Pet</NavLink></li>
@@ -119,11 +131,11 @@ const MyDonationCampDashboard= () => {
           <p className='border-y-2 w-4/12 mx-auto text-3xl  font-bold text-center '>User Dashboard</p>
         </div>
         {/* con */}
-<MyDonationCamp></MyDonationCamp>
+<UpdateDonationCamp></UpdateDonationCamp>
 
       </div>
     </div>
   );
 };
 
-export default MyDonationCampDashboard;
+export default UpdateDonationCampDashboard;

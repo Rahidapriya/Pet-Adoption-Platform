@@ -73,7 +73,7 @@ const CreateDonationCampaign = () => {
   // }
 console.log('img',url);
   const initialValues = {
-    nmae:"",
+    name:"",
     max_donation_limit: "",
    date:"",
     shortdesp: "",

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
 import logo from "../../assets/logo.png";
+import Navbar from '../../shared/navbar/Navbar';
 
 const UserDashboard = () => {
   const [users, setUsers] = useState([]);
@@ -28,13 +29,14 @@ const UserDashboard = () => {
   }
   console.log(users);
    console.log('dedd',users.role,users.email);
+   const isAdmin = users.some(user => user.role === 'Admin');
   const navLinks =
   <>
   <div className="flex flex-col items-center mb-5">
                <div className=" bg-white rounded-full p-5 w-24"> <img src={logo}  alt="" /></div>
               <div className="  text-2xl font-bold ">FourPows</div>
                </div>
-               {users.some(user => user.role === "Admin") && 
+               {isAdmin && 
       <>
         <li>
           <NavLink
@@ -107,8 +109,10 @@ const UserDashboard = () => {
   
     </>
   return (
-    <div className='grid grid-cols-4'>
-      <div className=' min-h-[100vh] bg-[#D52B5C] col-span-1 hidden lg:flex'>
+    <div>
+      <Navbar></Navbar>
+      <div className='grid grid-cols-4  pt-14'>
+      <div className=' min-h-[80vh] bg-[#D52B5C] col-span-1 hidden lg:flex'>
 
         <ul className="menu mt-6 z-[1] p-2 dropdown-content  text-white   ">
           {navLinks}
@@ -132,6 +136,7 @@ const UserDashboard = () => {
 
 
       </div>
+    </div>
     </div>
   );
 };

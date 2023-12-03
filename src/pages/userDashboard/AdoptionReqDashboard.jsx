@@ -18,13 +18,14 @@ const AdoptionReqDashboard = () => {
       })
       .catch(error => console.error('Error fetching my added users:', error));
   }, []);
+  const isAdmin = users.some(user => user.role === 'Admin');
   const navLinks =
   <>
   <div className="flex flex-col items-center mb-5">
                <div className=" bg-white rounded-full p-5 w-24"> <img src={logo}  alt="" /></div>
               <div className="  text-2xl font-bold ">FourPows</div>
                </div>
-    {users.role === "Admin" && (
+    {isAdmin && (
       <>
         <li>
           <NavLink

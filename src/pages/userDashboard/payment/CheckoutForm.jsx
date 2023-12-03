@@ -47,6 +47,8 @@ console.log('activedonation',donation);
     if (donation) {
       axiosSecure.post('/create-payment-intent', {
         donationAmount: values.donationAmount,
+        image:donation.image,
+        name:donation.shortdesp
       })
       .then(res => {
         console.log(res.data.clientSecret);
@@ -101,6 +103,9 @@ console.log('activedonation',donation);
 
           const payment = {
             email: user.email,
+            image:donation.image,
+            name:donation.name,
+            donationId:donation._id,
             donationAmount: values.donationAmount,
             transactionId: paymentIntent.id,
             date: new Date(),

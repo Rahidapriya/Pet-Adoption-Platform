@@ -41,6 +41,8 @@ import UpdateDonationCamp from "../../pages/userDashboard/updateDonationCampaign
 import MyDonationCampDashboard from "../../pages/donationCampaign/myDonationCamp/MyDonationCampDashboard";
 import MyDonation from "../../pages/userDashboard/myDonation/MyDonation";
 import MyDonationDashboard from "../../pages/userDashboard/myDonation/MyDonationDashboard";
+import UpdatePetDashboard from "../../pages/userDashboard/myaddedpet/updatePets/UpdatePetDashboard";
+import UpdateDonationCampDashboard from "../../pages/userDashboard/updateDonationCampaign/UpdateDonationCampDashboard";
 
 
 
@@ -107,14 +109,14 @@ const router = createBrowserRouter([
       },
       {
         path: '/updatedonationcamp/:donationCampaignId',
-        element: <UpdateDonationCamp></UpdateDonationCamp>,
+        element: <UpdateDonationCampDashboard></UpdateDonationCampDashboard>,
         loader: ({ params }) => fetch(`https://serversite-pet-adoption.vercel.app/adddonationcamp/${params.donationCampaignId}`)
       },
 
 
       {
         path: '/updatepet/:petId',
-        element: <UpdatePet></UpdatePet>,
+        element: <UpdatePetDashboard></UpdatePetDashboard>,
         loader: ({ params }) => fetch(`https://serversite-pet-adoption.vercel.app/pets/${params.petId}`)
 
       },

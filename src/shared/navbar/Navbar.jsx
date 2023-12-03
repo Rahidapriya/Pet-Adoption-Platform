@@ -67,7 +67,8 @@ const Navbar = ({ children }) => {
     
     </>
     return (
-      <div className={`drawer z-30 ${containerClass} `}>
+      <div className=" z-40">
+        <div className={`drawer z-30 ${containerClass} `}>
       <div className={`drawer z-30 py-3 ${navbarClass}`}>
       <div className="drawer z-30  fixed">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -221,6 +222,7 @@ const Navbar = ({ children }) => {
       </div>
     </div>
     </div>
+      </div>
   );
 };
 
