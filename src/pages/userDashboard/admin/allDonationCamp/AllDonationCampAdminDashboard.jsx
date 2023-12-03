@@ -70,6 +70,7 @@ const AllDonationCampAdminDashboard = () => {
         <div className=' divider text-white'></div>
       </>
     )}
+  
       <li><NavLink to="/addpet" className={({ isActive, isPending }) =>
         isPending ? "pending  text-white" : isActive ? "text-warning  font-bold underline underline-offset-8 hover:text-red  " : ""
       }>Add a Pet</NavLink></li>
@@ -95,6 +96,7 @@ const AllDonationCampAdminDashboard = () => {
   
   
     </>
+      console.log("userrole",users.role);
   return (
     <div className='grid grid-cols-4'>
       <div className=' min-h-[100vh] bg-[#D52B5C] col-span-1 hidden lg:flex'>

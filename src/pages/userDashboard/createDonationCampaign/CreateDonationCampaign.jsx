@@ -114,7 +114,7 @@ console.log('img',url);
           addedDate: `${formattedDate} ${formattedTime}`,
          
           userEmail: user.email,
-          Pause:false
+          pause:false
         };
   
         const response = await fetch("https://serversite-pet-adoption.vercel.app/adddonationcamp", {

@@ -2,9 +2,13 @@ import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 import SugestedDonationCamp from './sugestedDonationcamp/SugestedDonationCamp';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import CheckoutForm from '../../userDashboard/payment/CheckoutForm';
 
 const DonationCampaignDetails = () => {
     const campdetails=useLoaderData();
+    const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 
     const {image,shortdesp,longdesp,last_donation_date,max_donation_limit}=campdetails;
     return (
@@ -40,8 +44,22 @@ const DonationCampaignDetails = () => {
 
 <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
   <div className="modal-box">
-    <h3 className="font-bold text-lg">Hello!</h3>
-    <p className="py-4">Press ESC key or click the button below to close</p>
+
+
+ 
+
+        <div>
+            <div className='text-center'>Donate</div>
+            <div>
+              
+                <Elements stripe={stripePromise}>
+                    <CheckoutForm></CheckoutForm>
+                </Elements>
+            </div>
+    
+</div>
+    {/* <h3 className="font-bold text-lg">Hello!</h3>
+    <p className="py-4">Press ESC key or click the button below to close</p> */}
     <div className="modal-action">
       <form method="dialog">
         {/* if there is a button in form, it will close the modal */}

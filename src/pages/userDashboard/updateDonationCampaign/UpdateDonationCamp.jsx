@@ -133,7 +133,7 @@ const UpdateDonationCamp = () => {
             icon: "success",
             confirmButtonText: "Ok",
           });
-          navigate('/');
+        //   navigate('/');
         }
       } catch (error) {
         console.error("Error updating donation camp:", error);
