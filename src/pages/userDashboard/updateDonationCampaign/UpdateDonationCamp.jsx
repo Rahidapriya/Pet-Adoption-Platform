@@ -23,7 +23,7 @@ const UpdateDonationCamp = () => {
   useEffect(() => {
     const fetchDonationCampaign = async () => {
       try {
-        const response = await fetch(`http://localhost:5007/adddonationcamp/${donationCampaignId}`);
+        const response = await fetch(`https://serversite-pet-adoption.vercel.app/adddonationcamp/${donationCampaignId}`);
         const data = await response.json();
 
         // Set initial values for the form
@@ -116,7 +116,7 @@ const UpdateDonationCamp = () => {
           Pause: false,
         };
 
-        const response = await fetch(`http://localhost:5007/updatedonationcamp/${donationCampaignId}`, {
+        const response = await fetch(`https://serversite-pet-adoption.vercel.app/updatedonationcamp/${donationCampaignId}`, {
           method: "PUT",
           headers: {
             "content-type": "application/json",

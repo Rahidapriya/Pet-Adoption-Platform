@@ -117,7 +117,7 @@ console.log('img',url);
           Pause:false
         };
   
-        const response = await fetch("http://localhost:5007/adddonationcamp", {
+        const response = await fetch("https://serversite-pet-adoption.vercel.app/adddonationcamp", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -151,7 +151,7 @@ console.log('img',url);
   
     return (
         <div>
-      <div className="flex items-center justify-center p-12 w-full lg:w-10/12 mx-auto bg-base-700 mt-16 rounded-xl">
+      <div className="flex items-center justify-center p-12 w-full lg:w-10/12 mx-auto bg-base-7f00 mt-16 rounded-xl">
         <div className="mx-auto w-full max-w-[550px] shadow-lg p-6 rounded-md">
           <form onSubmit={handleSubmit}>
             <div className='flex '>

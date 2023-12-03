@@ -53,7 +53,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
-        // loader: () => fetch('http://localhost:5007/PetCategory')
+        // loader: () => fetch('https://serversite-pet-adoption.vercel.app/PetCategory')
       },
       {
         path: '/petlisting',
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
       {
         path: '/donationcampaigndetails/:id',
         element: <DonationCampaignDetails></DonationCampaignDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5007/adddonationcamp/${params.id}`)
+        loader: ({ params }) => fetch(`https://serversite-pet-adoption.vercel.app/adddonationcamp/${params.id}`)
       },
       {
         path: "/login",
@@ -91,7 +91,7 @@ const router = createBrowserRouter([
       {
         path: '/adoptpet/:id',
         element: <AdoptPet></AdoptPet>,
-        loader: ({ params }) => fetch(`http://localhost:5007/pets/${params.id}`)
+        loader: ({ params }) => fetch(`https://serversite-pet-adoption.vercel.app/pets/${params.id}`)
       },
       {
         path: '/myaddedpets',
@@ -99,46 +99,46 @@ const router = createBrowserRouter([
       },
       {
         path: '/createdonationcamp',
-        element:<CreateDonationCampaignDashboard></CreateDonationCampaignDashboard>
+        element: <CreateDonationCampaignDashboard></CreateDonationCampaignDashboard>
       },
       {
         path: '/mydonation',
-        element:<MyDonationDashboard></MyDonationDashboard>
+        element: <MyDonationDashboard></MyDonationDashboard>
       },
       {
         path: '/updatedonationcamp/:donationCampaignId',
-        element:<UpdateDonationCamp></UpdateDonationCamp>,
-        loader: ({ params }) => fetch(`http://localhost:5007/adddonationcamp/${params.donationCampaignId}`)
+        element: <UpdateDonationCamp></UpdateDonationCamp>,
+        loader: ({ params }) => fetch(`https://serversite-pet-adoption.vercel.app/adddonationcamp/${params.donationCampaignId}`)
       },
-      
-      
+
+
       {
         path: '/updatepet/:petId',
         element: <UpdatePet></UpdatePet>,
-        loader: ({ params }) => fetch(`http://localhost:5007/pets/${params.petId}`)
-        
+        loader: ({ params }) => fetch(`https://serversite-pet-adoption.vercel.app/pets/${params.petId}`)
+
       },
       {
-        path:'/mydonationcamp',
-        element:<MyDonationCampDashboard></MyDonationCampDashboard>
+        path: '/mydonationcamp',
+        element: <MyDonationCampDashboard></MyDonationCampDashboard>
       },
       {
-           path:'/allusers',
-           element:<AllUsersDeshboard></AllUsersDeshboard>
+        path: '/allusers',
+        element: <AllUsersDeshboard></AllUsersDeshboard>
       },
       {
-        path:'/allpetsadmin',
-        element:<AllPetsAdminDashboard></AllPetsAdminDashboard>
-   },
+        path: '/allpetsadmin',
+        element: <AllPetsAdminDashboard></AllPetsAdminDashboard>
+      },
 
- {
-        path:'/alldonationcampadmin',
-        element:<AllDonationCampAdminDashboard></AllDonationCampAdminDashboard>
-   },
-     
+      {
+        path: '/alldonationcampadmin',
+        element: <AllDonationCampAdminDashboard></AllDonationCampAdminDashboard>
+      },
 
 
-     
+
+
 
     ]
   },

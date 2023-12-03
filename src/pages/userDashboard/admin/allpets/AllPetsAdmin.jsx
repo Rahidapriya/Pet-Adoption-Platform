@@ -11,7 +11,7 @@ const AllPetsAdmin = () => {
     const axiosSecure = useAxiosSecure();
   
     useEffect(() => {
-      fetch(`http://localhost:5007/pets`)
+      fetch(`https://serversite-pet-adoption.vercel.app/pets`)
         .then((response) => response.json())
         .then((data) => {
           console.log('Fetched users:', data);
@@ -102,7 +102,7 @@ const AllPetsAdmin = () => {
           confirmButtonText: 'Yes, Delete it!'
         }).then((result) => {
           if (result.isConfirmed) {
-            fetch(`http://localhost:5007/pets/${_id}`, {
+            fetch(`https://serversite-pet-adoption.vercel.app/pets/${_id}`, {
               method: 'DELETE',
             })
               .then(response => response.json())

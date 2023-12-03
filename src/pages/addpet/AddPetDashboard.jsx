@@ -8,7 +8,7 @@ const AddPetDashboard = () => {
   const [users, setUsers] = useState([]);
   // const axiosSecure =useAxiosSecure();
   useEffect(() => {
-    fetch(`http://localhost:5007/users`)
+    fetch(`https://serversite-pet-adoption.vercel.app/users`)
       .then(response => response.json())
       .then(data => {
         console.log('Fetched users:', data);

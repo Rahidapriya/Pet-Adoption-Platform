@@ -16,7 +16,7 @@ const MyAddedPets = () => {
   const pagesVisited = currentPage * petsPerPage;
 
   useEffect(() => {
-    fetch(`http://localhost:5007/pets`)
+    fetch(`https://serversite-pet-adoption.vercel.app/pets`)
       .then(response => response.json())
       .then(data => {
         console.log('Fetched pets:', data);
@@ -42,7 +42,7 @@ const MyAddedPets = () => {
       confirmButtonText: 'Yes, Delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5007/pets/${_id}`, {
+        fetch(`https://serversite-pet-adoption.vercel.app/pets/${_id}`, {
           method: 'DELETE',
         })
           .then(response => response.json())
@@ -59,7 +59,7 @@ const MyAddedPets = () => {
     const pet = pets.find((pet) => pet._id === _id);
 
     if (pet && !pet.adopted) {
-      fetch(`http://localhost:5007/pets/${_id}`, {
+      fetch(`https://serversite-pet-adoption.vercel.app/pets/${_id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

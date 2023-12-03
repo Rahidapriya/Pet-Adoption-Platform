@@ -124,7 +124,7 @@ console.log('img',url);
           userEmail: user.email,
         };
   
-        const response = await fetch("http://localhost:5007/pets", {
+        const response = await fetch("https://serversite-pet-adoption.vercel.app/pets", {
           method: "POST",
           headers: {
             "content-type": "application/json",

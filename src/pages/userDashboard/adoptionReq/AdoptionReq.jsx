@@ -6,7 +6,7 @@ const AdoptionReq = () => {
 
     useEffect(() => {
            
-      fetch(`http://localhost:5007/addtoadopt`, )
+      fetch(`https://serversite-pet-adoption.vercel.app/addtoadopt`, )
         .then(response => response.json())
         .then(data =>
           {

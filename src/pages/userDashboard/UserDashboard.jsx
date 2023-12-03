@@ -1,28 +1,40 @@
 
 import { NavLink } from 'react-router-dom';
-import AddPet from '../addpet/AddPet';
+
 import { useEffect, useState } from 'react';
 import logo from "../../assets/logo.png";
 
 const UserDashboard = () => {
   const [users, setUsers] = useState([]);
-  // const axiosSecure =useAxiosSecure();
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    fetch(`http://localhost:5007/users`)
+    fetch(`https://serversite-pet-adoption.vercel.app/users`)
       .then(response => response.json())
       .then(data => {
         console.log('Fetched users:', data);
         setUsers(data);
+        setLoading(false); // Set loading to false when data is loaded
       })
-      .catch(error => console.error('Error fetching my added users:', error));
+      .catch(error => {
+        console.error('Error fetching my added users:', error);
+        setLoading(false); // Set loading to false even in case of an error
+      });
   }, []);
+
+  if (loading) {
+    // Show a loading spinner or message while waiting for data
+    return <div>Loading...</div>;
+  }
+  console.log(users);
+   console.log('dedd',users.role,users.email);
   const navLinks =
   <>
   <div className="flex flex-col items-center mb-5">
                <div className=" bg-white rounded-full p-5 w-24"> <img src={logo}  alt="" /></div>
               <div className="  text-2xl font-bold ">FourPows</div>
                </div>
-    {users.role === "Admin" && (
+               {users.some(user => user.role === "Admin") && 
       <>
         <li>
           <NavLink
@@ -68,7 +80,7 @@ const UserDashboard = () => {
         </li>
         <div className=' divider text-white'></div>
       </>
-    )}
+}
       <li><NavLink to="/addpet" className={({ isActive, isPending }) =>
         isPending ? "pending  text-white" : isActive ? "text-warning  font-bold underline underline-offset-8 hover:text-red  " : ""
       }>Add a Pet</NavLink></li>

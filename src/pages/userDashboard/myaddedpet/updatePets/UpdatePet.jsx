@@ -48,7 +48,7 @@ console.log('name updated',name);
   
     const fetchPetData = async () => {
       try {
-        const response = await fetch(`http://localhost:5007/pets/${petId}`);
+        const response = await fetch(`https://serversite-pet-adoption.vercel.app/pets/${petId}`);
         const data = await response.json();
   
         setInitialValues({
@@ -130,7 +130,7 @@ console.log('x',response.data);
         //   setFieldValue("photo", file);
         //   fileInputRef.current.value = '';
         // };
-        const response = await fetch(`http://localhost:5007/pets/${petId}`, {
+        const response = await fetch(`https://serversite-pet-adoption.vercel.app/pets/${petId}`, {
           method: "PUT",
           headers: {
             "content-type": "application/json",

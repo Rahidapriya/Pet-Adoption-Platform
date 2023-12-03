@@ -74,13 +74,13 @@ const userEmail=currentUser?.email || user?.email;
 const loggedUser={email:userEmail};
 if(currentUser){
    
-    axios.post('http://localhost:5007/jwt',loggedUser,{withCredentials:true})
+    axios.post('https://serversite-pet-adoption.vercel.app/jwt',loggedUser,{withCredentials:true})
     .then(res=>{
         console.log('token response',res.data);
     })
 }
 else{
-    axios.post('http://localhost:5007/logout',loggedUser,{withCredentials:true})
+    axios.post('https://serversite-pet-adoption.vercel.app/logout',loggedUser,{withCredentials:true})
     .then(res=>{
         console.log(res.data);
     })

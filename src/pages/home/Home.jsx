@@ -15,7 +15,7 @@ const Home = () => {
     const [petsCategory, setPetsCategory] = useState([]);
     useEffect(() => {
          
-          fetch(`http://localhost:5007/PetCategory`, )
+          fetch(`https://serversite-pet-adoption.vercel.app/PetCategory`, )
             .then(response => response.json())
             .then(data => setPetsCategory(data))
             .catch(error => console.error("Error fetching pets Category:", error));

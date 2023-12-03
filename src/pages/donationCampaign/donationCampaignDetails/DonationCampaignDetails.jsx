@@ -30,13 +30,29 @@ const DonationCampaignDetails = () => {
     <p className="block mb-8 font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
      {longdesp}
     </p>
-    <a href="#" className="inline-block"><button
-        className="flex bg-pink-700 text-white items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center uppercase align-middle transition-all rounded-lg select-none disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-gray-900/10 active:bg-gray-900/20"
-        type="button">
+    <button className="btn bg-pink-700" onClick={()=>document.getElementById('my_modal_5').showModal()}>
        Donate Now<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
           strokeWidth="2" className="w-4 h-4">
           <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-        </svg></button></a>
+        </svg></button>
+
+{/* Open the modal using document.getElementById('ID').showModal() method */}
+
+<dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+  <div className="modal-box">
+    <h3 className="font-bold text-lg">Hello!</h3>
+    <p className="py-4">Press ESC key or click the button below to close</p>
+    <div className="modal-action">
+      <form method="dialog">
+        {/* if there is a button in form, it will close the modal */}
+        <button className="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+
+
   </div>
 </div>  
 <div className='flex flex-col items-center justify-center text-3xl font-bold mt-10'><h3>_Suggested For You_</h3>
