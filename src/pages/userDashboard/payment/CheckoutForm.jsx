@@ -101,7 +101,7 @@ console.log('donationnnnn',donation);
         console.log('payment intent', paymentIntent);
         if (paymentIntent.status === 'succeeded') {
           console.log('transaction id', paymentIntent.id);
-
+          setTransactionId(paymentIntent.id);
           const payment = {
             email: user.email,
             image:donation.image,
