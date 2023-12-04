@@ -43,6 +43,8 @@ import MyDonation from "../../pages/userDashboard/myDonation/MyDonation";
 import MyDonationDashboard from "../../pages/userDashboard/myDonation/MyDonationDashboard";
 import UpdatePetDashboard from "../../pages/userDashboard/myaddedpet/updatePets/UpdatePetDashboard";
 import UpdateDonationCampDashboard from "../../pages/userDashboard/updateDonationCampaign/UpdateDonationCampDashboard";
+import PrivateRoute from "./PrivateRoute";
+import AllPetsByCategory from "../../pages/allPetsByCategory/AllPetsByCategory";
 
 
 
@@ -62,8 +64,13 @@ const router = createBrowserRouter([
         element: <PetListing></PetListing>
       },
       {
+        path: '/catagorized_pets/:cat',
+        element: <AllPetsByCategory></AllPetsByCategory>,
+        loader: ({ params }) => fetch(`https://serversite-pet-adoption.vercel.app/petbycategory/${params.cat}`)
+      },
+      {
         path: '/adoptionreq',
-        element: <AdoptionReqDashboard></AdoptionReqDashboard>
+        element:<PrivateRoute><AdoptionReqDashboard></AdoptionReqDashboard></PrivateRoute>
       },
       {
         path: '/donationcampaign',
@@ -71,7 +78,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/donationcampaigndetails/:id',
-        element: <DonationCampaignDetails></DonationCampaignDetails>,
+        element: <PrivateRoute><DonationCampaignDetails></DonationCampaignDetails></PrivateRoute>,
         loader: ({ params }) => fetch(`https://serversite-pet-adoption.vercel.app/adddonationcamp/${params.id}`)
       },
       {
@@ -84,58 +91,58 @@ const router = createBrowserRouter([
       },
       {
         path: '/userdashboard',
-        element: <UserDashboard></UserDashboard>
+        element: <PrivateRoute><UserDashboard></UserDashboard></PrivateRoute>
       },
       {
         path: '/addpet',
-        element: <AddPetDashboard></AddPetDashboard>
+        element: <PrivateRoute><AddPetDashboard></AddPetDashboard></PrivateRoute>
       },
       {
         path: '/adoptpet/:id',
-        element: <AdoptPet></AdoptPet>,
+        element: <PrivateRoute><AdoptPet></AdoptPet></PrivateRoute>,
         loader: ({ params }) => fetch(`https://serversite-pet-adoption.vercel.app/pets/${params.id}`)
       },
       {
         path: '/myaddedpets',
-        element: <MyAddedPetsDashboard></MyAddedPetsDashboard>
+        element: <PrivateRoute><MyAddedPetsDashboard></MyAddedPetsDashboard></PrivateRoute>
       },
       {
         path: '/createdonationcamp',
-        element: <CreateDonationCampaignDashboard></CreateDonationCampaignDashboard>
+        element: <PrivateRoute><CreateDonationCampaignDashboard></CreateDonationCampaignDashboard></PrivateRoute>
       },
       {
         path: '/mydonation',
-        element: <MyDonationDashboard></MyDonationDashboard>
+        element:<PrivateRoute> <MyDonationDashboard></MyDonationDashboard></PrivateRoute>
       },
       {
         path: '/updatedonationcamp/:donationCampaignId',
-        element: <UpdateDonationCampDashboard></UpdateDonationCampDashboard>,
+        element: <PrivateRoute><UpdateDonationCampDashboard></UpdateDonationCampDashboard></PrivateRoute>,
         loader: ({ params }) => fetch(`https://serversite-pet-adoption.vercel.app/adddonationcamp/${params.donationCampaignId}`)
       },
 
 
       {
         path: '/updatepet/:petId',
-        element: <UpdatePetDashboard></UpdatePetDashboard>,
+        element: <PrivateRoute><UpdatePetDashboard></UpdatePetDashboard></PrivateRoute>,
         loader: ({ params }) => fetch(`https://serversite-pet-adoption.vercel.app/pets/${params.petId}`)
 
       },
       {
         path: '/mydonationcamp',
-        element: <MyDonationCampDashboard></MyDonationCampDashboard>
+        element: <PrivateRoute><MyDonationCampDashboard></MyDonationCampDashboard></PrivateRoute>
       },
       {
         path: '/allusers',
-        element: <AllUsersDeshboard></AllUsersDeshboard>
+        element: <PrivateRoute><AllUsersDeshboard></AllUsersDeshboard></PrivateRoute>
       },
       {
         path: '/allpetsadmin',
-        element: <AllPetsAdminDashboard></AllPetsAdminDashboard>
+        element: <PrivateRoute><AllPetsAdminDashboard></AllPetsAdminDashboard></PrivateRoute>
       },
 
       {
         path: '/alldonationcampadmin',
-        element: <AllDonationCampAdminDashboard></AllDonationCampAdminDashboard>
+        element: <PrivateRoute><AllDonationCampAdminDashboard></AllDonationCampAdminDashboard></PrivateRoute>
       },
 
 

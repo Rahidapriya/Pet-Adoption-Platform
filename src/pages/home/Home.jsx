@@ -26,7 +26,7 @@ const Home = () => {
             <Navbar></Navbar>
             <Banner></Banner>
             <div className='flex flex-col items-center w-full '>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 my-10 lg:my-20 lg:gap-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 my-10 lg:my-20 lg:gap-2">
                                 {
                                     petsCategory.map(card=><PetCategory key={card._id} card={card}></PetCategory>)
                                 }

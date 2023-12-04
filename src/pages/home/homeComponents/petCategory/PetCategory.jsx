@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 
+import { Link } from "react-router-dom";
+
 
 
 const PetCategory = ({card}) => {
@@ -18,7 +20,7 @@ const PetCategory = ({card}) => {
         <div className="p-6 pt-0 font-bold text-2xl text-center mt-2 text-black">
           {card.category}
         </div>
-       {/* <div className="mx-3 " ><Link to={`/catagorized_books/${name}`}> <button className="btn w-full py-4 my-4 mx-auto text-white bg-[#087393] hover:bg-[#ff0000] hover:text-white">See More</button></Link></div> */}
+       <div className="mx-3 " ><Link to={`/catagorized_pets/${card.category}`}> <button className="btn w-full py-4 my-4 mx-auto text-white bg-[#087393] hover:bg-[#ff0000] hover:text-white">See More</button></Link></div>
       </div>
 
   
