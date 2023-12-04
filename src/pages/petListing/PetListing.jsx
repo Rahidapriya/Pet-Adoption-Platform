@@ -126,7 +126,7 @@ const PetListing = () => {
         hasMore={hasMore}
         loading={<h4>Loading...</h4>}
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-10 lg:my-20 lg:gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-10 lg:my-20 lg:gap-2 mx-20">
           {filteredPets.map((card, index) => (
             <PetListingCard key={`${card._id}-${index}`} card={card}></PetListingCard>
           ))}

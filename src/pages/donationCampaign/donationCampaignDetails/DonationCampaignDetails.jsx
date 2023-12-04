@@ -27,13 +27,13 @@ const DonationCampaignDetails = () => {
   <div className="p-6 lg:border-l-2 border-none border-pink-700 ml-10">
     <h6
       className="block mb-4 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-gray-700 uppercase">
-      {last_donation_date}
+      Last Donation Time:{last_donation_date}
     </h6>
     <h4 className="block mb-2 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-     {max_donation_limit}
+     Max Donation Amount:{max_donation_limit}
     </h4>
     <p className="block mb-8 font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
-     {shortdesp}
+     About:{shortdesp}
     </p>
     <p className="block mb-8 font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
      {longdesp}

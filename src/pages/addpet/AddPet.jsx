@@ -124,6 +124,7 @@ console.log('img',url);
           adopted:false,
           userEmail: user.email,
         };
+        console.log('userEmailAddPet',user.email);
   
         const response = await fetch("https://serversite-pet-adoption.vercel.app/pets", {
           method: "POST",
