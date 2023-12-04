@@ -10,7 +10,8 @@ const DonationCampaignDetails = () => {
     const campdetails=useLoaderData();
     const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 
-    const {image,shortdesp,longdesp,last_donation_date,max_donation_limit}=campdetails;
+    const {image,shortdesp,longdesp,last_donation_date,max_donation_limit,pause}=campdetails;
+    console.log('campdet',campdetails);
     return (
         <div>
             <div className="relative flex flex-col justify-center items-center  lg:flex-row bg-clip-border mt-20 border-pink-700 border-2 p-10 mx-auto rounded-xl bg-white text-gray-700 shadow-md w-full max-w-[48rem] ">
@@ -34,7 +35,7 @@ const DonationCampaignDetails = () => {
     <p className="block mb-8 font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
      {longdesp}
     </p>
-    <button className="btn bg-pink-700" onClick={()=>document.getElementById('my_modal_5').showModal()}>
+    <button disabled={pause} className="btn disabled:cursor-not-allowed bg-pink-700" onClick={()=>document.getElementById('my_modal_5').showModal()}>
        Donate Now<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
           strokeWidth="2" className="w-4 h-4">
           <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>

@@ -2,7 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../../components/providers/AuthProvider";
 
 const CheckoutForm = () => {
@@ -17,12 +17,12 @@ const CheckoutForm = () => {
 
   const [donation, setDonation] = useState(null);
   const [loading, setLoading] = useState(true); // Add loading state
-
+const {id}=useParams();
   useEffect(() => {
     fetch(`https://serversite-pet-adoption.vercel.app/adddonationcamp`)
       .then(response => response.json())
       .then(data => {
-        const activeDonation = data.find(donation => !donation.pause);
+        const activeDonation = data.find(donation => donation._id==id);
         setDonation(activeDonation);
         setLoading(false); // Set loading to false after fetching data
       })
@@ -42,7 +42,7 @@ console.log('activedonation',donation);
       [e.target.name]: e.target.value,
     });
   };
-
+console.log('donationnnnn',donation);
   useEffect(() => {
     if (donation) {
       axiosSecure.post('/create-payment-intent', {
@@ -111,6 +111,7 @@ console.log('activedonation',donation);
             date: new Date(),
             status: 'pending'
           };
+          console.log('paymentsssss',payment);
 
           const res = await axiosSecure.post('/payments', payment);
           console.log('payment saved', res.data);
@@ -123,7 +124,7 @@ console.log('activedonation',donation);
               showConfirmButton: false,
               timer: 1500
             });
-            navigate('/dashboard/paymentHistory');
+            // navigate('/dashboard/paymentHistory');
           }
         }
       }
@@ -135,7 +136,7 @@ console.log('activedonation',donation);
     return <p>Loading...</p>;
   }
 
-  if (!donation || donation.pause) {
+  if (donation.pause) {
     // Render a message or some UI indicating that donations are currently paused
     return <p>Donations are currently paused.</p>;
   }
@@ -173,7 +174,7 @@ console.log('activedonation',donation);
           className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         />
       </div>
-      <button className="btn btn-sm btn-primary my-4" type="submit" disabled={!stripe || !clientSecret}>
+      <button className="btn btn-sm btn-primary my-4" type="submit" disabled={!stripe || !clientSecret ||donation?.pause}>
         Pay
       </button>
       <p className="text-red-600">{error}</p>
