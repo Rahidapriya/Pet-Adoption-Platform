@@ -48,7 +48,8 @@ console.log('donationnnnn',donation);
       axiosSecure.post('/create-payment-intent', {
         donationAmount: values.donationAmount,
         image:donation.image,
-        name:donation.shortdesp
+        name:donation.shortdesp,
+        ownerEmail:donation.userEmail
       })
       .then(res => {
         console.log(res.data.clientSecret);
@@ -108,6 +109,7 @@ console.log('donationnnnn',donation);
             donationId:donation._id,
             donationAmount: values.donationAmount,
             transactionId: paymentIntent.id,
+            ownerEmail:donation.userEmail,
             date: new Date(),
             status: 'pending'
           };

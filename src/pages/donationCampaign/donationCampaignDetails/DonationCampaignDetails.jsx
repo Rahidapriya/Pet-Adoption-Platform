@@ -5,6 +5,8 @@ import SugestedDonationCamp from './sugestedDonationcamp/SugestedDonationCamp';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from '../../userDashboard/payment/CheckoutForm';
+import Navbar from '../../../shared/navbar/Navbar';
+import Footer from '../../../shared/footer/Footer';
 
 const DonationCampaignDetails = () => {
     const campdetails=useLoaderData();
@@ -14,6 +16,7 @@ const DonationCampaignDetails = () => {
     console.log('campdet',campdetails);
     return (
         <div>
+          <Navbar></Navbar>
             <div className="relative flex flex-col justify-center items-center  lg:flex-row bg-clip-border mt-20 border-pink-700 border-2 p-10 mx-auto rounded-xl bg-white text-gray-700 shadow-md w-full max-w-[48rem] ">
   <div
     className="relative w-2/5 m-0 overflow-hidden text-gray-700 bg-white rounded-r-none bg-clip-border rounded-xl shrink-0">
@@ -77,6 +80,7 @@ const DonationCampaignDetails = () => {
 <div className='flex flex-col items-center justify-center text-3xl font-bold mt-10'><h3>_Suggested For You_</h3>
 <p className='text-xl bg-green-500 px-6 py-2 mt-4 rounded-md'>Donate More</p></div>
 <SugestedDonationCamp></SugestedDonationCamp>
+<Footer></Footer>
         </div>
     );
 };

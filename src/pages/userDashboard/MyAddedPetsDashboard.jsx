@@ -4,20 +4,47 @@ import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import logo from "../../assets/logo.png"
 import MyAddedPets from './myaddedpet/MyAddedPets';
+import { useContext } from 'react';
+import { AuthContext } from '../../components/providers/AuthProvider';
 
 const MyAddedPetsDashboard = () => {
   const [users, setUsers] = useState([]);
-  // const axiosSecure =useAxiosSecure();
+  const [loading, setLoading] = useState(true);
+  const{user}=useContext(AuthContext);
+  const[isAdmin,setIsAdmin]=useState(false)
+
   useEffect(() => {
     fetch(`https://serversite-pet-adoption.vercel.app/users`)
       .then(response => response.json())
       .then(data => {
         console.log('Fetched users:', data);
         setUsers(data);
+        setLoading(false); // Set loading to false when data is loaded
       })
-      .catch(error => console.error('Error fetching my added users:', error));
+      .catch(error => {
+        console.error('Error fetching my added users:', error);
+        setLoading(false); // Set loading to false even in case of an error
+      });
   }, []);
-  const isAdmin = users.some(user => user.role === 'Admin');
+
+  useEffect(()=>{
+  // const result=users.find()
+  const result=users.find((us) =>us?.email===user?.email)
+  console.log('usersss',result);
+  const admin=result?.role==='Admin';
+  console.log('admin',admin);
+  setIsAdmin(admin)
+  },[users,user])
+  
+
+  if (loading) {
+    // Show a loading spinner or message while waiting for data
+    return <div>Loading...</div>;
+  }
+  // console.log(users);
+  //  console.log('dedd',users.role,users.email);
+  //  const isAdmin = users.some(user => user.role === 'Admin');
+  //  console.log('adminnnn',isAdmin);
   const navLinks =
   <>
   <div className="flex flex-col items-center mb-5">

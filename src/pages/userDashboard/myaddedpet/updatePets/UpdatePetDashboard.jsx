@@ -4,10 +4,14 @@ import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import logo from "../../../../assets/logo.png";
 import UpdatePet from './UpdatePet';
+import { AuthContext } from '../../../../components/providers/AuthProvider';
+import { useContext } from 'react';
 
 const UpdatePetDashboard = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const{user}=useContext(AuthContext);
+  const[isAdmin,setIsAdmin]=useState(false)
 
   useEffect(() => {
     fetch(`https://serversite-pet-adoption.vercel.app/users`)
@@ -23,13 +27,24 @@ const UpdatePetDashboard = () => {
       });
   }, []);
 
+  useEffect(()=>{
+  // const result=users.find()
+  const result=users.find((us) =>us?.email===user?.email)
+  console.log('usersss',result);
+  const admin=result?.role==='Admin';
+  console.log('admin',admin);
+  setIsAdmin(admin)
+  },[users,user])
+  
+
   if (loading) {
     // Show a loading spinner or message while waiting for data
     return <div>Loading...</div>;
   }
-  console.log(users);
-   console.log('dedd',users.role,users.email);
-   const isAdmin = users.some(user => user.role === 'Admin');
+  // console.log(users);
+  //  console.log('dedd',users.role,users.email);
+  //  const isAdmin = users.some(user => user.role === 'Admin');
+  //  console.log('adminnnn',isAdmin);
   const navLinks =
   <>
   <div className="flex flex-col items-center mb-5">

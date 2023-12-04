@@ -117,7 +117,8 @@ console.log('img',url);
          
           shortdesp: values.shortdesp,
           longdesp: values.longdesp,
-        
+         
+          // reqId:_id;
           addedDate: `${formattedDate} ${formattedTime}`,
           adopt_req: false,
           adopted:false,

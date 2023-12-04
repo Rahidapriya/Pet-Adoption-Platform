@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../components/providers/AuthProvider';
 import { Link, useLoaderData } from 'react-router-dom';
+import Navbar from '../../../shared/navbar/Navbar';
+import Footer from '../../../shared/footer/Footer';
 
 const AdoptPet = () => {
   const details = useLoaderData();
@@ -15,7 +17,7 @@ const AdoptPet = () => {
     image,
     age,
     longdesp,
-    shortdesp, } = details;
+    shortdesp,userEmail } = details;
   console.log('addpet', name, image);
   const handleAddToCart = (e) => {
     e.preventDefault();
@@ -55,6 +57,8 @@ const AdoptPet = () => {
       adoptDate: formattedDate,
       userAddress: userAddress,
       phone: phone,
+      ownerEmail:userEmail,
+      petId:_id,
       name,
       category,
       image,
@@ -98,6 +102,8 @@ const AdoptPet = () => {
 
   return (
     <div>
+      <Navbar></Navbar>
+      <div className=' mt-32'>
       <div className="card card-side bg-base-100 shadow-xl w-6/12 h-4/12 mx-auto my-20">
         <figure><img src={image} alt="Movie" className='w-12/12 ' /></figure>
         <div className="card-body">
@@ -203,6 +209,8 @@ const AdoptPet = () => {
           </div>
         </div>
       </div>
+      </div>
+      <Footer></Footer>
     </div>
   );
 };
