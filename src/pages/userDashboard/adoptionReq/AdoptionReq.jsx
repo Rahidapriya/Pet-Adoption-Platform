@@ -24,16 +24,16 @@ const AdoptionReq = () => {
 
   useEffect(() => {
     if (user && user.email) {
-      setFilteredCard(pets.filter(pet => pet.ownerEmail === user.email));
+      setFilteredCard(pets.filter(pet => pet.ownerEmail === user.email && pet.adopt_Req===true))
     }
   }, [pets, user]);
 
-
+console.log('request pet',pets);
   // //////
   const updatePetStatusLocally = (petId, newStatus) => {
     setAllCamps((prevPets) =>
       prevPets.map((pet) =>
-        pet._id === petId ? { ...pet, adopt_Req: newStatus } : pet
+        pet._id === petId ? { ...pet, adopted: newStatus } : pet
       )
     );
   };
@@ -44,7 +44,7 @@ const AdoptionReq = () => {
     updatePetStatusLocally(petId, true);
 
     axiosSecure
-      .patch(`/admin/accept/${petId}`)
+      .patch(`/admin/accept/${petId}`,{petId:pet.petId,id:pet._id})
       .then((res) => {
         console.log(res.data);
         if (res.data.modifiedCount === 0) {
@@ -75,7 +75,7 @@ const AdoptionReq = () => {
     updatePetStatusLocally(petId, false);
 
     axiosSecure
-      .patch(`/admin/reject/${petId}`)
+      .patch(`/admin/reject/${petId}`,{petId:pet.petId,id:pet._id})
       .then((res) => {
         console.log(res.data);
         if (res.data.modifiedCount === 0) {
@@ -102,7 +102,7 @@ const AdoptionReq = () => {
   return (
     <div>
       {filteredCard.length === 0 ? (
-        <p className='text-center text-bold text-2xl'>No adoption requests found.</p>
+        <p className='text-center text-bold text-2xl flex items-center justify-center h-[80vh]'>No adoption requests found.</p>
       ) : (
         <div className="overflow-x-auto">
           <table className="table">
@@ -131,8 +131,10 @@ const AdoptionReq = () => {
                   </td>
                   <td>{card.userEmail}</td>
                   <th>
-                    <button onClick={() => handleAccept(card)} className="btn btn-warning btn-xs">Accept</button>
-                    <button onClick={() => handleReject(card)}  className="btn btn-warning btn-xs">Reject</button>
+                    
+                  {/* disabled={!card.adopted} */}
+                    <button onClick={() => handleAccept(card)}    className="btn btn-warning btn-xs">Accept</button>
+                    <button onClick={() => handleReject(card)}    className="btn btn-warning btn-xs">Reject</button>
                   </th>
                 </tr>
               ))}

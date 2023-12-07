@@ -14,8 +14,9 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 
-
+import logincat from '../../assets/logincat.jpg'
   import loginhero from '../../assets/login.png' 
+
 
 import Navbar from '../../shared/navbar/Navbar';
 import { AuthContext } from '../../components/providers/AuthProvider';
@@ -109,18 +110,35 @@ const axiosPublic=useAxiosPublic();
       
         <div>
               <Navbar></Navbar>
-              <div className="hero min-h-screen bg-base-200">
-  <div className="hero-content flex-col lg:flex-row">
-<div className=' w-4/12'>  <img src={loginhero} alt="" /></div>
-
- <div className="  mx-3 px-3" >
-            <div className="relative flex flex-col justify-center items-center rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-none">
-  <h4 className="block font-sans text-5xl  leading-snug tracking-normal text-black text-center antialiased font-bold">
-   Log<span className='text-[#ff0000]'>in</span>
+              
+              <div className=" min-h-screen bg-base-200">
+             
+             <div>
+                <h4 className="block  text-5xl mt-14 pt-10 text-black text-center font-bold">
+   Log<span className='text-pink-600'>in</span>
   </h4>
-  <p className="mt-1 block font-sans text-base font-normal leading-relaxed text-black antialiased text-center">
+  <p className="mt-1 block  text-base font-normal text-warning  text-center">
     Enter your details to Login.
   </p>
+                </div>
+                <div className='hero'>
+  <div className="hero-content flex-col lg:flex-row">
+  <div className='w-6/12 h-8/12 rounded-lg relative'>
+            {/* Add a container for the image and text */}
+            <div className="relative">
+              {/* Image */}
+              <img src={logincat} alt="" className="w-full h-full object-cover rounded-lg" />
+              {/* Text overlay */}
+              <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 rounded-lg"></div>
+              <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 text-center text-white -translate-y-1/2 text-sm lg:text-3xl  ">
+                Welcome to <span className='lg:text-4xl text-xl text-pink-600 px-4 py-2 rounded-md font-bold'>four Pows</span> Pet Adopting center. <br />Login For Explore our Website
+              </p>
+            </div>
+          </div>
+
+ <div className="  mx-3 px-3 bg-white-200 border-2 border-pink-500 rounded-lg" >
+            <div className="relative flex flex-col justify-center items-center rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-none">
+  
      
 
 <form className="mt-8 mb-2 w-full max-w-screen-lg sm:w-96 px-3 py-10 shadow-md rounded-md" onSubmit={handleLogin}>
@@ -149,7 +167,7 @@ const axiosPublic=useAxiosPublic();
     </div>
     <p className=' text-sm mt-10 text-black'>Forget your Password?</p>
     <button
-      className="relative mt-6 block w-full select-none rounded-lg bg-[#ff0000] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+      className="relative mt-6 block w-full select-none rounded-lg bg-pink-600 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
       type="submit" value='Register'
       data-ripple-light="true"
     >
@@ -162,18 +180,19 @@ const axiosPublic=useAxiosPublic();
 
   <p className='text-center mt-2'>OR</p>
     <button
-      className=" relative mt-2 block md:w-96 w-full mx-3 select-none rounded-lg  bg-blue-400  py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+      className=" relative mt-2 block md:w-96 w-full mx-3 select-none rounded-lg  bg-warning  py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
       type="submit" value='Register'
       data-ripple-light="true" onClick={handleGoogle}
     >
-    <FcGoogle className=' absolute w-6 h-6 left-20 -mt-1'></FcGoogle> Continue with Google
+    <FcGoogle className='hidden lg:flex absolute w-6 h-6 left-20 -mt-1'></FcGoogle> Continue with Google
     </button>
-      <p className="p-2 text-sm md:p-5">Do not have an account? Please <Link to='/register' className=" text-[#ff0000] font-bold">Register</Link></p>
+      <p className="p-2 text-sm md:p-5">Do not have an account? Please <Link to='/register' className=" text-pink-600 font-bold">Register</Link></p>
   
 
     </div>
   </div>
   </div>
+             </div>
   </div>
   <ToastContainer />
 </div>

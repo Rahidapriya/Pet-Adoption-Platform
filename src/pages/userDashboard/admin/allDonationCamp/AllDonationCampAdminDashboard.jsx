@@ -39,7 +39,9 @@ const AllDonationCampAdminDashboard = () => {
 
   if (loading) {
     // Show a loading spinner or message while waiting for data
-    return <div>Loading...</div>;
+    return <div className=" h-[80vh] flex justify-center items-center">
+    <div className=" rounded-md h-12 w-12 border-4 border-t-4 border-pink-600 animate-spin "></div>;
+    </div>;
   }
   // console.log(users);
   //  console.log('dedd',users.role,users.email);

@@ -17,12 +17,12 @@ const CheckoutForm = () => {
 
   const [donation, setDonation] = useState(null);
   const [loading, setLoading] = useState(true); // Add loading state
-const {id}=useParams();
+  const { id } = useParams();
   useEffect(() => {
     fetch(`https://serversite-pet-adoption.vercel.app/adddonationcamp`)
       .then(response => response.json())
       .then(data => {
-        const activeDonation = data.find(donation => donation._id==id);
+        const activeDonation = data.find(donation => donation._id == id);
         setDonation(activeDonation);
         setLoading(false); // Set loading to false after fetching data
       })
@@ -31,7 +31,7 @@ const {id}=useParams();
         setLoading(false); // Set loading to false on error
       });
   }, []);
-console.log('activedonation',donation);
+  console.log('activedonation', donation);
   const [values, setValues] = useState({
     donationAmount: 0,
   });
@@ -42,19 +42,19 @@ console.log('activedonation',donation);
       [e.target.name]: e.target.value,
     });
   };
-console.log('donationnnnn',donation);
+  console.log('donationnnnn', donation);
   useEffect(() => {
     if (donation) {
       axiosSecure.post('/create-payment-intent', {
         donationAmount: values.donationAmount,
-        image:donation.image,
-        name:donation.shortdesp,
-        ownerEmail:donation.userEmail
+        image: donation.image,
+        name: donation.shortdesp,
+        ownerEmail: donation.userEmail
       })
-      .then(res => {
-        console.log(res.data.clientSecret);
-        setClientSecret(res.data.clientSecret);
-      });
+        .then(res => {
+          console.log(res.data.clientSecret);
+          setClientSecret(res.data.clientSecret);
+        });
     }
   }, [axiosSecure, values.donationAmount, donation]);
 
@@ -104,16 +104,18 @@ console.log('donationnnnn',donation);
           setTransactionId(paymentIntent.id);
           const payment = {
             email: user.email,
-            image:donation.image,
-            name:donation.name,
-            donationId:donation._id,
+            image: donation.image,
+            name: donation.name,
+            donationId: donation._id,
             donationAmount: values.donationAmount,
             transactionId: paymentIntent.id,
-            ownerEmail:donation.userEmail,
+            ownerEmail: donation.userEmail,
+
+            max_donation_limit: donation.max_donation_limit,
             date: new Date(),
             status: 'pending'
           };
-          console.log('paymentsssss',payment);
+          console.log('paymentsssss', payment);
 
           const res = await axiosSecure.post('/payments', payment);
           console.log('payment saved', res.data);
@@ -176,7 +178,7 @@ console.log('donationnnnn',donation);
           className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         />
       </div>
-      <button className="btn btn-sm btn-primary my-4" type="submit" disabled={!stripe || !clientSecret ||donation?.pause}>
+      <button className="btn btn-sm btn-primary my-4" type="submit" disabled={!stripe || !clientSecret || donation?.pause}>
         Pay
       </button>
       <p className="text-red-600">{error}</p>

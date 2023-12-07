@@ -120,7 +120,7 @@ console.log('img',url);
          
           // reqId:_id;
           addedDate: `${formattedDate} ${formattedTime}`,
-          adopt_req: false,
+          // adopt_req: false,
           adopted:false,
           userEmail: user.email,
         };

@@ -39,7 +39,9 @@ const MyDonationDashboard = () => {
 
   if (loading) {
     // Show a loading spinner or message while waiting for data
-    return <div>Loading...</div>;
+    return <div className=" h-[80vh] flex justify-center items-center">
+    <div className=" rounded-md h-12 w-12 border-4 border-t-4 border-pink-600 animate-spin "></div>;
+    </div>;
   }
   // console.log(users);
   //  console.log('dedd',users.role,users.email);
@@ -124,7 +126,11 @@ const MyDonationDashboard = () => {
   
     </>
   return (
-    <div className='grid grid-cols-4'>
+    <div className=''>
+      <div>
+        <h1></h1>
+      </div>
+      <div className='grid grid-cols-4'>
       <div className=' min-h-[100vh] bg-[#D52B5C] col-span-1 hidden lg:flex'>
 
         <ul className="menu mt-6 z-[1] p-2 dropdown-content  text-white   ">
@@ -149,6 +155,7 @@ const MyDonationDashboard = () => {
 <MyDonation></MyDonation>
 
       </div>
+    </div>
     </div>
   );
 };

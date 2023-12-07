@@ -4,6 +4,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
+
 const MyDonationCamp = () => {
   const { user } = useContext(AuthContext);
   const [donationCamp, setDonationCamp] = useState([]);
@@ -31,6 +32,7 @@ useEffect(() => {
     .catch(error => console.error('Error fetching donation:', error));
 }, []);
 console.log('myself filte',filteredDonator);
+console.log('paymentsroute',viewDonatorsss);
 
 useEffect(() => {
   if (user && user.email) {
@@ -48,8 +50,14 @@ useEffect(() => {
   }
 }, [donationCamp, user]);
 
-  const calculateProgress = (donated, max) => {
-    return (donated / max) * 100;
+  // const calculateProgress = (donated, max) => {
+  //   console.log('Donated:', donated);
+  //   console.log('Max:', max);
+  //   return (donated / max) * 100;
+  // };
+  const calculateProgress = (donationId, max) => {
+    const donatedAmount = viewDonatorsss.find(donation => donation.donationId === donationId)?.donationAmount || 0;
+    return (donatedAmount / max) * 100;
   };
 
   const updatePetStatusLocally = (petId, newStatus) => {
@@ -59,6 +67,7 @@ useEffect(() => {
       )
     );
   };
+  console.log('filter',filteredDonationCamp);
   const handleTogglePauseResume = (donation) => {
     const petId = donation._id;
 
@@ -99,19 +108,12 @@ useEffect(() => {
       });
   };
 
-  // const pauseDonation = (donationId) => {
-  //   // Implement the logic to pause the donation with the given donationId
-  //   // You may need to send a request to the server to update the donation status
-  // };
+  
 
-  // const editDonation = (donationId) => {
-  //   // Implement the logic to redirect the user to the edit donation page with the given donationId
-  //   // You can use react-router-dom or any routing mechanism for this purpose
-  // };
+
 
   const viewDonatorss = (donationId) => {
-    // Implement the logic to show a modal with the list of donors for the given donationId
-    // You may need to fetch donor information from the server
+   
     setSelectedDonation(donationId);
   };
 
@@ -132,17 +134,24 @@ useEffect(() => {
         </thead>
         <tbody>
         {filteredDonationCamp.map(donation => (
+          
   <tr key={donation._id}> {/* Assuming _id is a unique identifier */}
     <td className="py-2 px-4 border-b">{donation.name}</td>
     <td className="py-2 px-4 border-b text-center">{donation.max_donation_limit}</td>
-    <td className="py-2 px-4 border-b">
-      <div className="bg-blue-200 h-6 w-full rounded-full">
-        <div
-          className="bg-blue-500 h-full rounded-full"
-          style={{ width: `${calculateProgress(donation.donatedAmount, donation.max_donation_limit)}%` }}
-        ></div>
-      </div>
-    </td>
+    {/* <td className="py-2 px-4 border-b">
+  <div className="bg-blue-200 h-6 w-full rounded-full">
+    <div
+      className="bg-blue-500 h-full rounded-full"
+      style={{ width: `${calculateProgress(donation._id, donation.max_donation_limit)}%` }}
+    ></div>
+  </div>
+</td> */}
+<td className="py-2 px-4 border-b">
+<progress className="progress progress-warning w-56" value={calculateProgress(donation._id, donation.max_donation_limit)} max="100"></progress>
+  {/* <div className={`h-4 w-full bg-${calculateProgress(donation._id, donation.max_donation_limit) >= 70 ? 'green' : 'red'}-500 rounded-full`}></div> */}
+</td>
+
+
               <td className="py-2 px-4 border-b">
               <button
                   className={`${
@@ -165,49 +174,6 @@ useEffect(() => {
       </table>
 
 
-{/* Open the modal using document.getElementById('ID').showModal() method */}
-{/* <button className="btn" onClick={()=>document.getElementById('my_modal_5').showModal()}>open modal</button>
-<dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-  <div className="modal-box">
-  <div className="overflow-x-auto">
-  <table className="table">
-    
-    <thead>
-      <tr>
-        <th></th>
-        <th>Serial</th>
-        <th>Donators</th>
-        <th>Donation Amount</th>
-      </tr>
-    </thead>
-    <tbody>
-            {filteredDonator.map((don, index) => (
-             
-              <tr key={index}>
-                 <td>{index+1}</td>
-                 <td>{don.email}</td>
-                <td>{don.donationAmount}</td>
-               
-                
-                
-              </tr>
-            ))}
-          </tbody>
-  </table>
-</div>
-    <div className="modal-action">
-      <form method="dialog">
-       
-        <button className="btn">Close</button>
-      </form>
-    </div>
-  </div>
-  
-</dialog> */}
-
-
-
-      {/* Modal for Donators */}
       {/* Modal for Donators */}
 {selectedDonation !== null && filteredDonator.length > 0 && (
   <div className="fixed inset-0 flex items-center justify-center mx-auto">

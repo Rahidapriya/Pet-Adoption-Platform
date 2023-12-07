@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../components/providers/AuthProvider';
 import Swal from 'sweetalert2';
+// import lottie from '../../../hooks/useLottie';
+// import { useLottie } from 'lottie-react';
 
 const MyDonation = () => {
 const {user}=useContext(AuthContext);
+// const lottie=useLottie();
     const [mydonations, setMyDonations] = useState([]);
 
 
@@ -73,19 +76,17 @@ const {user}=useContext(AuthContext);
 
 
     return (
-      <div>
-      <div>
-
-      </div>
-      <div className="overflow-x-auto">
+      <div className=''>
+      
+      <div className="overflow-x-auto bg-white m-10 rounded-md">
 <table className="table">
 {/* head */}
-<thead>
+<thead className=''>
 <tr>
 <th>Pet Image</th>
   <th>Name</th>
  
-  <ht>Donation Amount</ht>
+  <th>Donation Amount</th>
    
   <th></th>
 </tr>
@@ -99,7 +100,7 @@ const {user}=useContext(AuthContext);
   <td>
     <div className="flex items-center gap-3">
       <div className="avatar">
-        <div className="mask mask-squircle w-12 h-12">
+        <div className="mask mask-circle w-12 h-12">
           <img src={donation.image} />
         </div>
       </div>
@@ -115,7 +116,7 @@ const {user}=useContext(AuthContext);
    {donation.donationAmount}
     
   </td>
-  <td><button className='btn btn-sm  btn-error' onClick={() => deletePet(donation._id)}>Ask for Refund</button></td>
+  <td><button className='btn btn-sm  bg-gradient-to-r from-pink-700  to-pink-200 text-white' onClick={() => deletePet(donation._id)}>Ask for Refund</button></td>
   {/* <th>
       {user.role === 'Admin'?'Admin':<button onClick={()=>handleMakeAdmin(user)} className="btn btn-primary btn-sm">Make Admin</button>}
     

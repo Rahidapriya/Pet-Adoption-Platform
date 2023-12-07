@@ -65,7 +65,7 @@ const AdoptPet = () => {
       longdesp,
       shortdesp,
       adopt_Req: true,
-      adopted:false,
+      // adopted:false,
     };
 
 

@@ -124,7 +124,9 @@ const PetListing = () => {
         dataLength={filteredPets.length} // Use filteredPets instead of pets
         next={handleScroll}
         hasMore={hasMore}
-        loading={<h4>Loading...</h4>}
+        loading={<div className=" h-[80vh] flex justify-center items-center">
+        <div className=" rounded-md h-12 w-12 border-4 border-t-4 border-pink-600 animate-spin "></div>;
+        </div>}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-10 lg:my-20 lg:gap-2 mx-20">
           {filteredPets.map((card, index) => (
