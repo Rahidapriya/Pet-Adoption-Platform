@@ -3,7 +3,7 @@ import action from '../../../../assets/adoptme.png'
 import { BiSolidDonateHeart } from "react-icons/bi";
 const Action = () => {
     return (
-        <div className='flex items-center  justify-center'>
+        <div className='flex flex-col md:flex-row items-center  justify-center'>
             <div>
                 <img src={action} className=' w-8/12 mx-auto' alt="" />
             </div>

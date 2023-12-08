@@ -3,7 +3,7 @@ import pet2 from '../../../../assets/pet3.jpg'
 const Inspiration = () => {
     return (
         <div className=' flex justify-center flex-col mx-auto items-center w-8/12'>
-           <div className='flex items-center '>
+           <div className='flex  flex-col-reverse lg:flex-row items-center '>
            <div className=' p-7 '>
             <p className='text-xl '><span className='text-3xl '>Find Your Perfect Companion: Adopt, Don't Shop</span></p>
 <p>Welcome to a World of Unconditional Love</p>
@@ -14,7 +14,7 @@ const Inspiration = () => {
             </div>
            </div>
 <p className='text-3xl font-bold my-10'>Why Adopt?</p>
-        <div className='grid grid-cols-3 gap-6'>
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
             <div className='bg-pink-200 p-5 rounded-md'>
            <span className='font-bold '> Change a Life, Save a Life:</span>
 <p>Every adoption is a life-changing experience. By choosing to adopt, you not only provide a loving home for a pet in need but also save them from the uncertainties of life in a shelter.</p>

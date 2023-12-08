@@ -23,7 +23,7 @@ const AboutUs = () => {
             </div>
             <div>
               <h1 className="text-2xl font-bold">Our Vision</h1>
-              <p>At BoiPoka, we envision a world where access to books and knowledge is limitless. Our vision is to be a guiding light in the literary world, connecting readers to the endless possibilities of learning and self-discovery.</p>
+              <p>At Four Pows, we dream of a world where the echoes of happy barks and content purrs fill every home. Our vision is to be the heartbeat of pet adoption, fostering connections that bring joy, companionship, and a forever home to every creature with four paws.</p>
             </div>
           </div>
           {/*  */}
@@ -33,7 +33,7 @@ const AboutUs = () => {
             </div>
             <div>
               <h1 className="text-2xl font-bold">Our Mission</h1>
-              <p>BoiPoka is committed to empowering readers by offering an extensive collection of books, from all genres and eras. We believe in the transformative power of reading.</p>
+              <p>Four Pows is on a heartfelt mission to rewrite the stories of countless furry companions, guiding them towards a brighter chapter filled with love and belonging. We're committed to not just facilitating adoptions but also nurturing a community where the journey of pet companionship is celebrated and supported every step of the way.</p>
             </div>
           </div>
           {/*  */}
@@ -43,7 +43,7 @@ const AboutUs = () => {
             </div>
             <div>
               <h1 className="text-2xl font-bold">Our Core Values</h1>
-              <p>At BoiPoka celebrates the rich tapestry of voices and perspectives within the world of literature. We are committed to offering books that represent diverse cultures, genres, and authors.</p>
+              <p>Four Pows values the diversity in every wag, meow, and chirp, recognizing the unique charm each pet brings. Our core values revolve around inclusivity, compassion, and the belief that every pet, regardless of their past, deserves a warm, loving embrace. We are dedicated to upholding the principles of responsible pet ownership, ensuring that the Four Pows community is a sanctuary of unconditional love and lifelong connections.</p>
             </div>
           </div>
         </div>
