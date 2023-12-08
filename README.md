@@ -15,6 +15,7 @@ This project is a comprehensive pet adoption platform that allows users to conne
 ### Styling
 - Tailwind CSS for utility-first styling.
 - Vanilla CSS for custom styling.
+- Daisy Ui
 ### Backend
 - MongoDB for storing and managing pet data.
 - Firebase for authentication.
