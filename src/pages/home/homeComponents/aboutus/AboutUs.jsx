@@ -43,7 +43,7 @@ const AboutUs = () => {
             </div>
             <div>
               <h1 className="text-2xl font-bold">Our Core Values</h1>
-              <p>Four Pows values the diversity in every wag, meow, and chirp, recognizing the unique charm each pet brings. Our core values revolve around inclusivity, compassion, and the belief that every pet, regardless of their past, deserves a warm, loving embrace. We are dedicated to upholding the principles of responsible pet ownership, ensuring that the Four Pows community is a sanctuary of unconditional love and lifelong connections.</p>
+              <p>Four Pows values the diversity in every wag, meow, and chirp, recognizing the unique charm each pet brings. Our core values revolve around inclusivity, compassion, and the belief that every pet, regardless of their past, deserves a warm, loving embrace. We are dedicated to upholding the principles of responsible pet ownership, ensuring that the Four Pows community is a sanctuary of unconditional love and lifelong connections...</p>
             </div>
           </div>
         </div>
