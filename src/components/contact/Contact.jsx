@@ -40,7 +40,7 @@ const Contact = () => {
   };
     return (
         <div className='section h-screen mt-20 lg:mb-20 mb-96 ' id='contact'>
-            <div className='flex flex-col'><h1 className='text-4xl font-bold text-center  my-20 gradient-text'>GET IN TOUCH</h1></div>
+            <div className='flex flex-col'><h1 className='text-4xl font-bold text-center  my-20 text-black'>GET IN TOUCH</h1></div>
           <div className='flex flex-col lg:flex-row gap-10 items-center justify-center'>
             <div>
 <img src={contact} className='w-96 header' alt="" data-aos="zoom-in-up" />
@@ -48,7 +48,7 @@ const Contact = () => {
             <div className="relative flex flex-col text-gray-700 bg-white shadow-md w-96 rounded-xl bg-clip-border">
   <div data-aos='fade-up'
     className="relative grid mx-4 mb-4 -mt-6 overflow-hidden text-white shadow-lg h-28 place-items-center rounded-xl  btn-bgg bg-clip-border shadow-gray-900/20">
-    <h3 className="block font-sans text-3xl antialiased font-semibold leading-snug tracking-normal  text-white">
+    <h3 className="block font-sans text-3xl antialiased font-semibold leading-snug tracking-normal  text-[#D52B5C]">
      Send Message
     </h3>
   </div>
@@ -92,7 +92,7 @@ const Contact = () => {
     <div><textarea name='message' required  className="textarea textarea-bordered w-full" placeholder="Write Your Message"></textarea></div>
   </div>
   <div className="p-6 ">
-   <input type='submit' className='w-full bgg cursor-pointer text-white font-bold bg-[#FF4081]  rounded-full py-3' value='Send'/>
+   <input type='submit' className='w-full bgg cursor-pointer text-white font-bold bg-[#D52B5C]  rounded-full py-3' value='Send'/>
     {/* <button
       className="block w-full select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
       type="button">

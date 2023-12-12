@@ -8,6 +8,7 @@ import Inspiration from './homeComponents/inspiration/Inspiration';
 import PetCategory from './homeComponents/petCategory/PetCategory';
 import { useEffect, useState } from 'react';
 import Footer from '../../shared/footer/Footer';
+import Contact from '../../components/contact/Contact';
 
 const Home = () => {
     // const cards=useLoaderData();
@@ -36,6 +37,7 @@ const Home = () => {
             <Action></Action>
             <Inspiration></Inspiration>
             <AboutUs></AboutUs>
+            <Contact></Contact>
             <Footer></Footer>
         </div>
     );
