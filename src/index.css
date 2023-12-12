@@ -8,3 +8,20 @@
     display: inline-block;
     cursor: pointer;
   }
+  
+.header{
+  animation: bounce 4s linear infinite
+  ;
+}
+@keyframes bounce {
+  0%{
+      transform: translateY(-20px);
+  }
+  50%{
+      transform: translateY(20px);
+  }
+  100%{
+      transform: translateY(-20px);
+  }
+
+}

@@ -5,7 +5,7 @@ const Action = () => {
     return (
         <div className='flex flex-col md:flex-row items-center  justify-center'>
             <div>
-                <img src={action} className=' w-8/12 mx-auto' alt="" />
+                <img src={action} className='header w-8/12 mx-auto' alt="" />
             </div>
             <div>
             <hr className='text-[#d42a5c]'/>

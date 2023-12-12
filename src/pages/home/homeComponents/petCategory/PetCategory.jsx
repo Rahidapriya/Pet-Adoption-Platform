@@ -13,9 +13,9 @@ const PetCategory = ({card}) => {
         <div>
            
       
-           <div className=" bg-white my-3 rounded-md  border-gray-300 shadow-lg border-2" >
+           <div className=" bg-white my-3 rounded-md 10/12 mx-auto border-gray-300 shadow-lg border-2" >
         <div className="relative mx-4 mt-4 overflow-hidden text-black bg-white  h-72 rounded-xl bg-clip-border">
-          <img src={card.image} className="h-full" alt={card.category} />
+          <img src={card.image} className="h-full w-64" alt={card.category} />
         </div>
         <div className="p-6 pt-0 font-bold text-2xl text-center mt-2 text-black">
           {card.category}
